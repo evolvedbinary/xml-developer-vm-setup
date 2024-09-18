@@ -31,22 +31,25 @@ file { '/opt/oxygen':
   require => File["/opt/oxygen-${oxygen_version}"],
 }
 
+$oxygen_desktop_shortcut = @("OXYGEN_DESKTOP_ENTRY_EOF"/L)
+  [Desktop Entry]
+  Version=1.0
+  Type=Application
+  Name=Oxygen XML Editor
+  Exec=/opt/oxygen/oxygen.sh
+  Icon=/opt/oxygen/Oxygen128.png
+  Terminal=false
+  StartupNotify=false
+  GenericName=Oxygen XML Editor
+  | OXYGEN_DESKTOP_ENTRY_EOF
+
 file { 'oxygen-desktop-shortcut':
   ensure  => file,
   path    => "/home/${default_user}/Desktop/oxygen.desktop",
   owner   => $default_user,
   group   => $default_user,
   mode    => '0644',
-  content => "[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Oxygen XML Editor
-Exec=/opt/oxygen/oxygen.sh
-Icon=/opt/oxygen/Oxygen128.png
-Terminal=false
-StartupNotify=false
-GenericName=Oxygen XML Editor
-",
+  content => $oxygen_desktop_shortcut,
   require => [
     Package['desktop'],
     File['default_user_desktop_folder'],
@@ -82,9 +85,9 @@ $oxygen_license_xml = @(OXYGEN_LICENSE_XML_EOF:xml/L)
         <String>license.26</String>
         <String>------START-LICENSE-KEY------
 
-Registration_Name=Evolved Binary - trial
+Registration_Name=sysops @ evolvedbinary . com
 
-Company=Evolved Binary
+Company=Evolved-Binary
 
 Category=Enterprise
 
@@ -92,13 +95,14 @@ Component=XML-Editor, XSLT-Debugger, Saxon-SA
 
 Version=26
 
-Number_of_Licenses=10
+Number_of_Licenses=1
 
-Date=02-09-2024
+Date=09-15-2024
 
-Trial=35
+Trial=31
 
-SGN=MCwCFCCKQhNd3MTGOTv9j7m+bZ+3RaHzAhQXSepcF2MY6Zc/XmEiRvgr1J89Ew\=\=
+SGN=MCwCFHzStSY/uhwcbe9Dsry/qUvy2rLPAhQIZ0J/y6ypZQvecApCqdMu7DXu3A\=\=
+
 
 -------END-LICENSE-KEY-------</String>
       </entry>
