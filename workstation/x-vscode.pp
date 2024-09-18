@@ -8,10 +8,9 @@ exec { 'download-vscode-deb':
   require => Package['curl'],
 }
 
-exec { 'install-vscode-deb':
-  command => '/usr/bin/dpkg -i /tmp/vscode.deb',
-  unless  => '/usr/bin/dpkg -s code',
-  user    => 'root',
+package { 'code':
+  ensure  => installed,
+  source  => '/tmp/vscode.deb',
   require => [
     Package['desktop'],
     Exec['download-vscode-deb'],
@@ -23,7 +22,7 @@ file_line { 'vscode-no-open-folder':
   path    => '/usr/share/applications/code.desktop',
   line    => 'MimeType=text/plain;application/x-code-workspace;',
   match   => '^MimeType\=',
-  require => Exec['install-vscode-deb'],
+  require => Package['code'],
 }
 
 file { 'vscode-desktop-shortcut':

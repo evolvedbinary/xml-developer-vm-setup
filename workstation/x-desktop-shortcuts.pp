@@ -68,7 +68,7 @@ file { 'existdb-dashboard-desktop-shortcut':
     Package['desktop'],
     File['default_user_desktop_folder'],
     Service['existdb'],
-    Exec['install-google-chrome-deb'],
+    Package['google-chrome-stable'],
     Exec['download-existdb-x-logo'],
   ],
 }
@@ -127,7 +127,7 @@ file { 'training-course-desktop-shortcut':
   require => [
     Package['desktop'],
     File['default_user_desktop_folder'],
-    Exec['install-google-chrome-deb'],
+    Package['google-chrome-stable'],
     Exec['download-eb-favicon-logo'],
   ],
 }

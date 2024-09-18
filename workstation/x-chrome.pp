@@ -9,10 +9,9 @@ exec { 'download-google-chrome-deb':
   require => Package['wget'],
 }
 
-exec { 'install-google-chrome-deb':
-  command => '/usr/bin/dpkg -i /tmp/google-chrome-stable_current_amd64.deb',
-  unless  => '/usr/bin/dpkg -s google-chrome-stable',
-  user    => 'root',
+package { 'google-chrome-stable':
+  ensure  => installed,
+  source  => '/tmp/google-chrome-stable_current_amd64.deb',
   require => [
     Package['desktop'],
     Exec['download-google-chrome-deb'],
@@ -29,7 +28,7 @@ file { 'google-chrome-desktop-shortcut':
   require => [
     Package['desktop'],
     File['default_user_desktop_folder'],
-    Exec['install-google-chrome-deb'],
+    Package['google-chrome-stable'],
   ],
 }
 
