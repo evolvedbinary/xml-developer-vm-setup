@@ -36,7 +36,7 @@ exec { 'guacamole-client-compile':
   creates  => "${guacamole_client_source_folder}/target",
   require  => [
     Vcsrepo['guacamole-client-source'],
-    Package['jdk17'],
+    Package['openjdk-17-jdk-headless'],
     File['/opt/maven'],
   ],
 }
@@ -259,7 +259,7 @@ file { '/etc/guacamole/user-mapping.xml':
 $tomcat_packages = ['tomcat9', 'tomcat9-admin', 'tomcat9-user']
 package { $tomcat_packages:
   ensure  => installed,
-  require => Package['jdk17'],
+  require => Package['openjdk-17-jdk-headless'],
 }
 
 file { 'guacamole-war':

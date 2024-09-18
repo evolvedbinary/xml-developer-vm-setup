@@ -2,11 +2,10 @@
 # Puppet Script for a Java Developer Environment on Ubuntu 22.04
 ###
 
-$maven_version = '3.9.6'
+$maven_version = '3.9.8'
 
-package { 'jdk17':
+package { 'openjdk-17-jdk-headless':
   ensure  => installed,
-  name    => 'openjdk-17-jdk-headless',
 }
 
 file_line { 'JAVA_HOME':
@@ -14,7 +13,7 @@ file_line { 'JAVA_HOME':
   path    => '/etc/environment',
   line    => 'JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64',
   match   => '^JAVA_HOME\=',
-  require => Package['jdk17'],
+  require => Package['openjdk-17-jdk-headless'],
 }
 
 exec { 'install-maven':
