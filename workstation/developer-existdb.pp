@@ -161,7 +161,7 @@ exec { 'compile-existdb':
   creates     => "${existdb_source_folder}/exist-distribution/target/exist-distribution-${existdb_version}-dir",
   timeout     => 600,
   require     => [
-    Package['jdk17'],
+    Package['temurin-17-jdk'],
     File['/opt/maven'],
     File['existdb_quick_build_script'],
   ],
