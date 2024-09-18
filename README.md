@@ -160,7 +160,7 @@ git clone https://github.com/evolvedbinary/xml-developer-vm-setup.git
 cd xml-developer-vm-setup
 sudo ./install-puppet-agent.sh
 
-rm -rf guacamole
+cd workstation
 
 sudo /opt/puppetlabs/bin/puppet apply locale-gb.pp
 
@@ -178,10 +178,10 @@ We have to restart the system after the above as it may install a new Kernel and
 sudo shutdown -r now
 ```
 
-After the system restarts and you have logged in, you need to resume from the `xml-developer-vm-setup` repo checkout:
+After the system restarts and you have logged in, you need to resume from the `xml-developer-vm-setup/workstation` repo checkout:
 
 ```shell
-cd xml-developer-vm-setup
+cd xml-developer-vm-setup/workstation
 sudo FACTER_default_user_password=mypassword \
      FACTER_existdb_db_admin_password=xmldev \
      FACTER_existdb_version=7.0.0-SNAPSHOT \
