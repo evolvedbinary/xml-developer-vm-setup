@@ -13,10 +13,14 @@ package { 'unattended-upgrades':
   ensure => installed,
 }
 
+$apt_auto_upgrades = @("APT_AUTO_UPGRADES_EOF"/L)
+  APT::Periodic::Update-Package-Lists "1";
+  APT::Periodic::Unattended-Upgrade "1";
+  | APT_AUTO_UPGRADES_EOF
+
 file { '/etc/apt/apt.conf.d/20auto-upgrades':
   ensure  => file,
-  content => 'APT::Periodic::Update-Package-Lists "1";
-APT::Periodic::Unattended-Upgrade "1";',
+  content => $apt_auto_upgrades,
   owner   => 'root',
   group   => 'root',
   mode    => '0644',
