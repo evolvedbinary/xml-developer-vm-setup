@@ -18,7 +18,7 @@ vcsrepo { 'guacamole-client-source':
   path               => $guacamole_client_source_folder,
   provider           => git,
   source             => 'https://github.com/apache/guacamole-client.git',
-  revision           => 'master',
+  revision           => 'main',
   keep_local_changes => false,  # TODO(AR) change this to 'true' once https://github.com/puppetlabs/puppetlabs-vcsrepo/pull/623 is merged and released
   owner              => $default_user,
   group              => $default_user,
@@ -67,14 +67,18 @@ file { '/etc/guacamole/extensions':
   require => File['/etc/guacamole'],
 }
 
+$guacamole_properties = @("GUACAMOLE_PROPERTIES_EOF"/L)
+  allowed-languages: en
+  guacd-hostname: localhost
+  guacd-port: 4822
+  | GUACAMOLE_PROPERTIES_EOF
+
 file { '/etc/guacamole/guacamole.properties':
   ensure  => file,
   owner   => 'root',
   group   => 'root',
   mode    => '0744',
-  content => 'allowed-languages: en
-guacd-hostname: localhost
-guacd-port: 4822',
+  content => $guacamole_properties,
   require => File['/etc/guacamole'],
 }
 
@@ -181,7 +185,8 @@ $user_mapping = @("USER_MAPPING_EOF":xml/L)
               <param name="drive-name">guacamole</param>
               <param name="drive-path">/guacamole-drive</param>
           </connection>
-          <authorize username="xmldev7" password="xmldev">
+        </authorize>
+        <authorize username="xmldev7" password="xmldev">
           <connection name="xmldev7">
               <protocol>rdp</protocol>
               <param name="hostname">xmldev7.evolvedbinary.com</param>
@@ -197,7 +202,8 @@ $user_mapping = @("USER_MAPPING_EOF":xml/L)
               <param name="drive-name">guacamole</param>
               <param name="drive-path">/guacamole-drive</param>
           </connection>
-          <authorize username="xmldev8" password="xmldev">
+        </authorize>
+        <authorize username="xmldev8" password="xmldev">
           <connection name="xmldev8">
               <protocol>rdp</protocol>
               <param name="hostname">xmldev8.evolvedbinary.com</param>
@@ -213,6 +219,8 @@ $user_mapping = @("USER_MAPPING_EOF":xml/L)
               <param name="drive-name">guacamole</param>
               <param name="drive-path">/guacamole-drive</param>
           </connection>
+        </authorize>
+        <authorize username="xmldev9" password="xmldev">
           <connection name="xmldev9">
               <protocol>rdp</protocol>
               <param name="hostname">xmldev9.evolvedbinary.com</param>
@@ -228,6 +236,8 @@ $user_mapping = @("USER_MAPPING_EOF":xml/L)
               <param name="drive-name">guacamole</param>
               <param name="drive-path">/guacamole-drive</param>
           </connection>
+        </authorize>
+        <authorize username="xmldev10" password="xmldev">
           <connection name="xmldev10">
               <protocol>rdp</protocol>
               <param name="hostname">xmldev10.evolvedbinary.com</param>
@@ -256,31 +266,16 @@ file { '/etc/guacamole/user-mapping.xml':
   require => File['/etc/guacamole'],
 }
 
-$tomcat_packages = ['tomcat9', 'tomcat9-admin', 'tomcat9-user']
-package { $tomcat_packages:
-  ensure  => installed,
-  require => Package['openjdk-17-jdk-headless'],
-}
-
 file { 'guacamole-war':
   ensure  => file,
-  path    => '/var/lib/tomcat9/webapps/guacamole.war',
-  source  => "${guacamole_client_source_folder}/guacamole/target/guacamole-1.5.5.war",
+  path    => '/opt/tomcat/webapps/guacamole.war',
+  source  => "${guacamole_client_source_folder}/guacamole/target/guacamole-1.6.0.war",
   require => [
     File['/etc/guacamole/guacamole.properties'],
     File['/etc/guacamole/user-mapping.xml'],
     File['/etc/guacamole/lib'],
     File['/etc/guacamole/extensions'],
     Exec['guacamole-client-compile'],
-    Package['tomcat9'],
-  ],
-}
-
-service { 'tomcat9':
-  ensure  => running,
-  enable  => true,
-  require => [
-    File['guacamole-war'],
-    Package['tomcat9'],
+    Service['tomcat'],
   ],
 }
