@@ -162,3 +162,15 @@ exec { 'gvfs-trust-ibm-data-studio-desktop-shortcut':
   ],
   require     => File['ibm-data-studio-desktop-shortcut'],
 }
+
+ini_setting { 'ibm-data-studio-desktop-shortcut-position':
+  ensure  => present,
+  path    => "/home/${default_user}/.config/pcmanfm-qt/lxqt/desktop-items-0.conf",
+  section => 'ibm-data-studio.desktop',
+  setting => 'pos',
+  value   => '@Point(214 118)',
+  require => [
+    File['desktop-items-0'],
+    File['ibm-data-studio-desktop-shortcut'],
+  ],
+}

@@ -67,6 +67,18 @@ exec { 'gvfs-trust-oxygen-desktop-shortcut':
   require     => File['oxygen-desktop-shortcut'],
 }
 
+ini_setting { 'oxygen-desktop-shortcut-position':
+  ensure  => present,
+  path    => "/home/${default_user}/.config/pcmanfm-qt/lxqt/desktop-items-0.conf",
+  section => 'oxygen.desktop',
+  setting => 'pos',
+  value   => '@Point(139 218)',
+  require => [
+    File['desktop-items-0'],
+    File['oxygen-desktop-shortcut'],
+  ],
+}
+
 # oXygen License file
 file { 'oxygen-user-settings-path':
   ensure  => directory,

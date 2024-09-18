@@ -30,3 +30,15 @@ exec { 'gvfs-trust-firefox-shortcut':
   ],
   require     => File['firefox-desktop-shortcut'],
 }
+
+ini_setting { 'firefox-desktop-shortcut-position':
+  ensure  => present,
+  path    => "/home/${default_user}/.config/pcmanfm-qt/lxqt/desktop-items-0.conf",
+  section => 'firefox.desktop',
+  setting => 'pos',
+  value   => '@Point(113 115)',
+  require => [
+    File['desktop-items-0'],
+    File['firefox-desktop-shortcut'],
+  ],
+}

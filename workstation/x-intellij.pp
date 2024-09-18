@@ -63,3 +63,15 @@ exec { 'gvfs-trust-intellij-desktop-shortcut':
   ],
   require     => File['intellij-desktop-shortcut'],
 }
+
+ini_setting { 'intellij-desktop-shortcut-position':
+  ensure  => present,
+  path    => "/home/${default_user}/.config/pcmanfm-qt/lxqt/desktop-items-0.conf",
+  section => 'intellij.desktop',
+  setting => 'pos',
+  value   => '@Point(113 218)',
+  require => [
+    File['desktop-items-0'],
+    File['intellij-desktop-shortcut'],
+  ],
+}

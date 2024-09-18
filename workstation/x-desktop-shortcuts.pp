@@ -83,6 +83,18 @@ exec { 'gvfs-trust-existdb-dashboard-desktop-shortcut':
   require     => File['existdb-dashboard-desktop-shortcut'],
 }
 
+ini_setting { 'existdb-dashboard-desktop-shortcut-position':
+  ensure  => present,
+  path    => "/home/${default_user}/.config/pcmanfm-qt/lxqt/desktop-items-0.conf",
+  section => 'existdb-dashboard.desktop',
+  setting => 'pos',
+  value   => '@Point(214 115)',
+  require => [
+    File['desktop-items-0'],
+    File['existdb-dashboard-desktop-shortcut'],
+  ],
+}
+
 exec { 'download-eb-favicon-logo':
   command => "wget -O /home/${default_user}/.local/share/icons/eb-favicon-logo.svg https://evolvedbinary.com/images/icons/shape-icon.svg",
   path    => '/usr/bin',
@@ -128,4 +140,16 @@ exec { 'gvfs-trust-training-course-desktop-shortcut':
     'DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus',
   ],
   require     => File['training-course-desktop-shortcut'],
+}
+
+ini_setting { 'training-course-desktop-shortcut-position':
+  ensure  => present,
+  path    => "/home/${default_user}/.config/pcmanfm-qt/lxqt/desktop-items-0.conf",
+  section => 'training-course.desktop',
+  setting => 'pos',
+  value   => '@Point(214 12)',
+  require => [
+    File['desktop-items-0'],
+    File['training-course-desktop-shortcut'],
+  ],
 }

@@ -166,4 +166,16 @@ exec { 'gvfs-trust-db2-client-desktop-shortcut':
   require     => File['db2-client-desktop-shortcut'],
 }
 
+ini_setting { 'db2-client-desktop-shortcut-position':
+  ensure  => present,
+  path    => "/home/${default_user}/.config/pcmanfm-qt/lxqt/desktop-items-0.conf",
+  section => 'db2-client.desktop',
+  setting => 'pos',
+  value   => '@Point(214 321)',
+  require => [
+    File['desktop-items-0'],
+    File['db2-client-desktop-shortcut'],
+  ],
+}
+
 # TODO(AR) - Add SQL files for data to the exercises folder

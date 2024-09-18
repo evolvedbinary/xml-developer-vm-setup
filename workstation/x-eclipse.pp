@@ -63,3 +63,15 @@ exec { 'gvfs-trust-eclipse-desktop-shortcut':
   ],
   require     => File['eclipse-desktop-shortcut'],
 }
+
+ini_setting { 'eclipse-desktop-shortcut-position':
+  ensure  => present,
+  path    => "/home/${default_user}/.config/pcmanfm-qt/lxqt/desktop-items-0.conf",
+  section => 'eclipse.desktop',
+  setting => 'pos',
+  value   => '@Point(113 424)',
+  require => [
+    File['desktop-items-0'],
+    File['eclipse-desktop-shortcut'],
+  ],
+}

@@ -42,3 +42,15 @@ exec { 'gvfs-trust-google-chrome-desktop-shortcut':
   ],
   require     => File['google-chrome-desktop-shortcut'],
 }
+
+ini_setting { 'google-chrome-desktop-shortcut-position':
+  ensure  => present,
+  path    => "/home/${default_user}/.config/pcmanfm-qt/lxqt/desktop-items-0.conf",
+  section => 'google-chrome.desktop',
+  setting => 'pos',
+  value   => '@Point(113 12)',
+  require => [
+    File['desktop-items-0'],
+    File['google-chrome-desktop-shortcut'],
+  ],
+}

@@ -44,3 +44,15 @@ exec { 'gvfs-trust-pgadmin4-desktop-shortcut':
   ],
   require     => File['pgadmin4-desktop-shortcut'],
 }
+
+ini_setting { 'pgadmin4-desktop-shortcut-position':
+  ensure  => present,
+  path    => "/home/${default_user}/.config/pcmanfm-qt/lxqt/desktop-items-0.conf",
+  section => 'pgadmin4.desktop',
+  setting => 'pos',
+  value   => '@Point(214 424)',
+  require => [
+    File['desktop-items-0'],
+    File['pgadmin4-desktop-shortcut'],
+  ],
+}

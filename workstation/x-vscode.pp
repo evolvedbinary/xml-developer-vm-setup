@@ -49,3 +49,15 @@ exec { 'gvfs-trust-vscode-desktop-shortcut':
   ],
   require     => File['vscode-desktop-shortcut'],
 }
+
+ini_setting { 'vscode-desktop-shortcut-position':
+  ensure  => present,
+  path    => "/home/${default_user}/.config/pcmanfm-qt/lxqt/desktop-items-0.conf",
+  section => 'code.desktop',
+  setting => 'pos',
+  value   => '@Point(113 527)',
+  require => [
+    File['desktop-items-0'],
+    File['vscode-desktop-shortcut'],
+  ],
+}
