@@ -10,7 +10,7 @@ apt::source { 'pgadmin':
   repos    => 'main',
   comment  => 'pgAdmin',
   key      => {
-    id     => '8881B2A8210976F2',
+    id     => 'E8697E2EEF76C02D3A6332778881B2A8210976F2',
     source => 'https://www.pgadmin.org/static/packages_pgadmin_org.pub',
   },
 }
