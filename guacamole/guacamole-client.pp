@@ -213,6 +213,36 @@ $user_mapping = @("USER_MAPPING_EOF":xml/L)
               <param name="drive-name">guacamole</param>
               <param name="drive-path">/guacamole-drive</param>
           </connection>
+          <connection name="xmldev9">
+              <protocol>rdp</protocol>
+              <param name="hostname">xmldev9.evolvedbinary.com</param>
+              <param name="port">3389</param>
+              <param name="username">ubuntu</param>
+              <param name="password">${xmldev_default_user_password}</param>
+              <param name="enable-touch">false</param>
+              <param name="resize-method">display-update</param>
+              <param name="disable-audio">true</param>
+              <param name="enable-printing">true</param>
+              <param name="printer-name">guacamole-client</param>
+              <param name="enable-drive">true</param>
+              <param name="drive-name">guacamole</param>
+              <param name="drive-path">/guacamole-drive</param>
+          </connection>
+          <connection name="xmldev10">
+              <protocol>rdp</protocol>
+              <param name="hostname">xmldev10.evolvedbinary.com</param>
+              <param name="port">3389</param>
+              <param name="username">ubuntu</param>
+              <param name="password">${xmldev_default_user_password}</param>
+              <param name="enable-touch">false</param>
+              <param name="resize-method">display-update</param>
+              <param name="disable-audio">true</param>
+              <param name="enable-printing">true</param>
+              <param name="printer-name">guacamole-client</param>
+              <param name="enable-drive">true</param>
+              <param name="drive-name">guacamole</param>
+              <param name="drive-path">/guacamole-drive</param>
+          </connection>
       </authorize>
   </user-mapping>
   | USER_MAPPING_EOF
