@@ -206,7 +206,7 @@ After installation you should be able to access this instance using either one o
 1. Directly, by using an RDP (Remote Desktop Protocol) client, e.g. Microsoft Remote Desktop. This approach usually gives the most responsive performance for the user.
 	* Clients:
 		* **Windows** - run `mstsc.exe`
-		* **Mac** - Install and run (Microsoft Remote Desktop](https://apps.apple.com/us/app/microsoft-remote-desktop/id1295203466?mt=12) from the Apple Store.
+		* **Mac** - Install and run [Microsoft Remote Desktop](https://apps.apple.com/us/app/microsoft-remote-desktop/id1295203466?mt=12) from the Apple Store.
 		* **Linux** - run `rdesktop` (Ubuntu install: `apt-get install -y rdesktop && rdesktop`)
 	* Connection Settings:
 		* **Host**: The IP address or FQDN of the remote machine (e.g. `xmldev1.evolvedbinary.com`)
