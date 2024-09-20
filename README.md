@@ -130,6 +130,7 @@ The following software will be configured:
 * XML Environment
 	* eXist-db 7.0.0-SNAPSHOT (build from source)
 	* Oxygen XML Editor
+	* Saxon HE 12.5
 
 * Database Environment
 	* IBM DB2 Community Edition 11.5.9
