@@ -149,6 +149,7 @@ The following software will be configured:
 	* wget
 	* Screen
 	* tar, gzip, bzip2, zstd, zip (and unzip)
+	* Python 3 and Pip 3
 
 
 ### Installing a Complete XML Developer Workstation
