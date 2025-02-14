@@ -46,52 +46,23 @@ exec { 'download-existdb-x-logo':
   ],
 }
 
-$existdb_desktop_shortcut =  @("EXISTDB_SHORTCUT_EOF"/L)
-  [Desktop Entry]
-  Version=1.0
-  Name=eXist-db Dashboard
-  Exec=/usr/bin/google-chrome-stable http://localhost:8080
-  StartupNotify=true
-  Terminal=false
-  Icon=/home/${default_user}/.local/share/icons/existdb-x.png
-  Type=Application
-  | EXISTDB_SHORTCUT_EOF
-
-file { 'existdb-dashboard-desktop-shortcut':
-  ensure  => file,
-  path    => "/home/${default_user}/Desktop/existdb-dashboard.desktop",
-  content => $existdb_desktop_shortcut,
-  owner   => $default_user,
-  group   => $default_user,
-  mode    => '0644',
-  require => [
+xdesktop::shortcut { 'eXist-db Dashboard':
+  application_path => '/usr/bin/google-chrome-stable http://localhost:8080',
+  application_icon => "/home/${default_user}/.local/share/icons/existdb-x.png",
+  startup_notify   => true,
+  user             => $default_user,
+  position         => {
+    provider => 'lxqt',
+    x        => 214,
+    y        => 115,
+  },
+  require          => [
     Package['desktop'],
-    File['default_user_desktop_folder'],
-    Service['existdb'],
     Package['google-chrome-stable'],
-    Exec['download-existdb-x-logo'],
-  ],
-}
-
-exec { 'gvfs-trust-existdb-dashboard-desktop-shortcut':
-  command     => "/usr/bin/gio set /home/${default_user}/Desktop/existdb-dashboard.desktop metadata::trusted true",
-  unless      => "/usr/bin/gio info --attributes=metadata::trusted /home/${default_user}/Desktop/existdb-dashboard.desktop | /usr/bin/grep trusted",
-  user        => $default_user,
-  environment => [
-    'DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus',
-  ],
-  require     => File['existdb-dashboard-desktop-shortcut'],
-}
-
-ini_setting { 'existdb-dashboard-desktop-shortcut-position':
-  ensure  => present,
-  path    => "/home/${default_user}/.config/pcmanfm-qt/lxqt/desktop-items-0.conf",
-  section => 'existdb-dashboard.desktop',
-  setting => 'pos',
-  value   => '@Point(214 115)',
-  require => [
+    File['default_user_desktop_folder'],
     File['desktop-items-0'],
-    File['existdb-dashboard-desktop-shortcut'],
+    Exec['download-existdb-x-logo'],
+    Service['existdb'],
   ],
 }
 
@@ -106,50 +77,21 @@ exec { 'download-eb-favicon-logo':
   ],
 }
 
-$training_course_desktop_shortcut =  @("TRAINING_COURSE_SHORTCUT_EOF"/L)
-  [Desktop Entry]
-  Version=1.0
-  Name=The Complete XML Developer - Slides
-  Exec=/usr/bin/google-chrome-stable https://static.evolvedbinary.com/cxd/
-  StartupNotify=true
-  Terminal=false
-  Icon=/home/${default_user}/.local/share/icons/eb-favicon-logo.svg
-  Type=Application
-  | TRAINING_COURSE_SHORTCUT_EOF
-
-file { 'training-course-desktop-shortcut':
-  ensure  => file,
-  path    => "/home/${default_user}/Desktop/training-course.desktop",
-  content => $training_course_desktop_shortcut,
-  owner   => $default_user,
-  group   => $default_user,
-  mode    => '0644',
-  require => [
+xdesktop::shortcut { 'The Complete XML Developer - Slides':
+  application_path => '/usr/bin/google-chrome-stable https://static.evolvedbinary.com/cxd/',
+  application_icon => "/home/${default_user}/.local/share/icons/eb-favicon-logo.svg",
+  startup_notify   => true,
+  user             => $default_user,
+  position         => {
+    provider => 'lxqt',
+    x        => 214,
+    y        => 12,
+  },
+  require          => [
     Package['desktop'],
-    File['default_user_desktop_folder'],
     Package['google-chrome-stable'],
-    Exec['download-eb-favicon-logo'],
-  ],
-}
-
-exec { 'gvfs-trust-training-course-desktop-shortcut':
-  command     => "/usr/bin/gio set /home/${default_user}/Desktop/training-course.desktop metadata::trusted true",
-  unless      => "/usr/bin/gio info --attributes=metadata::trusted /home/${default_user}/Desktop/training-course.desktop | /usr/bin/grep trusted",
-  user        => $default_user,
-  environment => [
-    'DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus',
-  ],
-  require     => File['training-course-desktop-shortcut'],
-}
-
-ini_setting { 'training-course-desktop-shortcut-position':
-  ensure  => present,
-  path    => "/home/${default_user}/.config/pcmanfm-qt/lxqt/desktop-items-0.conf",
-  section => 'training-course.desktop',
-  setting => 'pos',
-  value   => '@Point(214 12)',
-  require => [
+    File['default_user_desktop_folder'],
     File['desktop-items-0'],
-    File['training-course-desktop-shortcut'],
+    Exec['download-eb-favicon-logo'],
   ],
 }

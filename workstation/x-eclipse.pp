@@ -31,47 +31,20 @@ file { '/opt/eclipse':
   require => File["/opt/eclipse-${eclipse_version}"],
 }
 
-file { 'eclipse-desktop-shortcut':
-  ensure  => file,
-  path    => "/home/${default_user}/Desktop/eclipse.desktop",
-  owner   => $default_user,
-  group   => $default_user,
-  mode    => '0644',
-  content => "[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Eclipse
-Exec=/opt/eclipse/eclipse
-Icon=/opt/eclipse/icon.xpm
-Terminal=false
-StartupNotify=false
-GenericName=Eclipse IDE
-",
-  require => [
+xdesktop::shortcut { 'Eclipse':
+  application_path => '/opt/eclipse/eclipse',
+  application_icon => '/opt/eclipse/icon.xpm',
+  startup_notify   => false,
+  user             => $default_user,
+  position         => {
+    provider => 'lxqt',
+    x        => 113,
+    y        => 424,
+  },
+  require          => [
     Package['desktop'],
     File['default_user_desktop_folder'],
-    File['/opt/eclipse'],
-  ],
-}
-
-exec { 'gvfs-trust-eclipse-desktop-shortcut':
-  command     => "/usr/bin/gio set /home/${default_user}/Desktop/eclipse.desktop metadata::trusted true",
-  unless      => "/usr/bin/gio info --attributes=metadata::trusted /home/${default_user}/Desktop/eclipse.desktop | /usr/bin/grep trusted",
-  user        => $default_user,
-  environment => [
-    'DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus',
-  ],
-  require     => File['eclipse-desktop-shortcut'],
-}
-
-ini_setting { 'eclipse-desktop-shortcut-position':
-  ensure  => present,
-  path    => "/home/${default_user}/.config/pcmanfm-qt/lxqt/desktop-items-0.conf",
-  section => 'eclipse.desktop',
-  setting => 'pos',
-  value   => '@Point(113 424)',
-  require => [
     File['desktop-items-0'],
-    File['eclipse-desktop-shortcut'],
+    File['/opt/eclipse'],
   ],
 }

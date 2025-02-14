@@ -139,38 +139,18 @@ exec { 'install-ibm-data-studio':
 }
 
 # Add Desktop shortcut
-file { 'ibm-data-studio-desktop-shortcut':
-  ensure  => file,
-  path    => "/home/${default_user}/Desktop/ibm-data-studio.desktop",
-  source  => '/usr/share/applications/IBMIM0DataStudio012124.1.4Client1234.desktop',
-  owner   => $default_user,
-  group   => $default_user,
-  mode    => '0644',
-  require => [
+xdesktop::shortcut { 'IBM Data Studio':
+  shortcut_source => '/usr/share/applications/IBMIM0DataStudio012124.1.4Client1234.desktop',
+  user            => $default_user,
+  position        => {
+    provider => 'lxqt',
+    x        => 214,
+    y        => 118,
+  },
+  require         => [
     Package['desktop'],
     File['default_user_desktop_folder'],
-    Exec['install-ibm-data-studio'],
-  ],
-}
-
-exec { 'gvfs-trust-ibm-data-studio-desktop-shortcut':
-  command     => "/usr/bin/gio set /home/${default_user}/Desktop/ibm-data-studio.desktop metadata::trusted true",
-  unless      => "/usr/bin/gio info --attributes=metadata::trusted /home/${default_user}/Desktop/ibm-data-studio.desktop | /usr/bin/grep trusted",
-  user        => $default_user,
-  environment => [
-    'DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus',
-  ],
-  require     => File['ibm-data-studio-desktop-shortcut'],
-}
-
-ini_setting { 'ibm-data-studio-desktop-shortcut-position':
-  ensure  => present,
-  path    => "/home/${default_user}/.config/pcmanfm-qt/lxqt/desktop-items-0.conf",
-  section => 'ibm-data-studio.desktop',
-  setting => 'pos',
-  value   => '@Point(214 118)',
-  require => [
     File['desktop-items-0'],
-    File['ibm-data-studio-desktop-shortcut'],
+    Exec['install-ibm-data-studio'],
   ],
 }

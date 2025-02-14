@@ -167,7 +167,8 @@ cd workstation
 sudo /opt/puppetlabs/bin/puppet apply 00-locale.pp
 
 sudo FACTER_default_user_password=mypassword \
-     /opt/puppetlabs/bin/puppet apply 01-base.pp
+     /opt/puppetlabs/bin/puppet apply --modulepath=/etc/puppetlabs/code/environments/production/modules:$(pwd)/modules \
+	 01-base.pp
 ```
 
 **NOTE:** you should set your own passwords appropriately above!
@@ -188,7 +189,8 @@ sudo FACTER_default_user_password=mypassword \
      FACTER_existdb_db_admin_password=xmldev \
      FACTER_existdb_version=7.0.0-SNAPSHOT \
      FACTER_postgresql_db_postgres_password=postgres \
-     /opt/puppetlabs/bin/puppet apply .
+     /opt/puppetlabs/bin/puppet apply --modulepath=/etc/puppetlabs/code/environments/production/modules:$(pwd)/modules \
+  .
 ```
 
 **NOTE:** you should set your own passwords appropriately above!
