@@ -1,5 +1,5 @@
 ###
-# Puppet Script for extra Desktop Shortcuts on Ubuntu 22.04
+# Puppet Script for extra Desktop Shortcuts on Ubuntu 24.04
 ###
 
 file { 'dot-local':
@@ -35,10 +35,10 @@ file { 'local-icons':
   ],
 }
 
-exec { 'download-existdb-x-logo':
-  command => "wget -O /home/${default_user}/.local/share/icons/existdb-x.png https://raw.githubusercontent.com/eXist-db/exist/develop/exist-core/src/main/resources/org/exist/client/icons/x.png",
+exec { 'download-elemental-logo':
+  command => "wget -O /home/${default_user}/.local/share/icons/elemental.png https://raw.githubusercontent.com/evolvedbinary/elemental/develop-7.x.x/exist-core/src/main/resources/org/exist/client/icons/elemental-device.png",
   path    => '/usr/bin',
-  creates => "/home/${default_user}/.local/share/icons/existdb-x.png",
+  creates => "/home/${default_user}/.local/share/icons/elemental.png",
   user    => $default_user,
   require => [
     File['local-icons'],
@@ -46,9 +46,9 @@ exec { 'download-existdb-x-logo':
   ],
 }
 
-xdesktop::shortcut { 'eXist-db Dashboard':
+xdesktop::shortcut { 'Elemental Dashboard':
   application_path => '/usr/bin/google-chrome-stable http://localhost:8080',
-  application_icon => "/home/${default_user}/.local/share/icons/existdb-x.png",
+  application_icon => "/home/${default_user}/.local/share/icons/elemental.png",
   startup_notify   => true,
   user             => $default_user,
   position         => {
@@ -61,8 +61,8 @@ xdesktop::shortcut { 'eXist-db Dashboard':
     Package['google-chrome-stable'],
     File['default_user_desktop_folder'],
     File['desktop-items-0'],
-    Exec['download-existdb-x-logo'],
-    Service['existdb'],
+    Exec['download-elemental-logo'],
+    Service['elemental'],
   ],
 }
 

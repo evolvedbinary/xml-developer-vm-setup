@@ -134,13 +134,13 @@ The following software will be configured:
 	* Okular
 
 * Java Development Environment
-	* JDK 17
+	* JDK 17 and 21
 	* Apache Maven 3
 	* IntelliJ IDEA CE
 	* Eclipse IDE
 
 * XML Environment
-	* eXist-db 7.0.0-SNAPSHOT (build from source)
+	* Elemental 7.4.0-SNAPSHOT (build from source)
 	* Oxygen XML Editor
 	* Saxon HE 12.5
 
@@ -198,8 +198,8 @@ After the system restarts and you have logged in, you need to resume from the `x
 ```shell
 cd xml-developer-vm-setup/workstation
 sudo FACTER_default_user_password=mypassword \
-     FACTER_existdb_db_admin_password=xmldev \
-     FACTER_existdb_version=7.0.0-SNAPSHOT \
+     FACTER_elemental_db_admin_password=xmldev \
+     FACTER_elemental_version=7.4.0-SNAPSHOT \
      FACTER_postgresql_db_postgres_password=postgres \
      /opt/puppetlabs/bin/puppet apply --modulepath=/etc/puppetlabs/code/environments/production/modules:$(pwd)/modules \
   .
@@ -208,7 +208,7 @@ sudo FACTER_default_user_password=mypassword \
 **NOTE:** you should set your own passwords appropriately above!
 
 * `default_user_password` this is the password to set for the default linux user (typically the user is named `ubuntu` on Ubuntu Cloud images). It needs to be the same as the password you used for this above.
-* `existdb_db_admin_password` this is the password to set for the eXist-db `admin` user.
+* `elemental_db_admin_password` this is the password to set for the Elemental `admin` user.
 * `postgresql_db_postgres_password` - This is the password to set for the `postgres` database user in postgres.
 
 We have to restart the system after the above as it installs a new desktop login manager.

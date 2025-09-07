@@ -6,7 +6,7 @@ include apt
 
 $maven_version = '3.9.8'
 
-# Install Adoptium Temurin JDK 17 (oXygen XML Editor only support Oracle or Temurin JDKs)
+# Install Adoptium Temurin JDK 17 as default (oXygen XML Editor only support Oracle or Temurin JDKs), and JDK 21 (needed for Elemental)
 apt::source { 'adoptium':
   location => 'https://packages.adoptium.net/artifactory/deb',
   release  => 'noble',
@@ -20,11 +20,20 @@ apt::source { 'adoptium':
   notify   => Exec['apt_update'],
 }
 
+package { 'temurin-21-jdk':
+  ensure  => installed,
+  require => [
+    Apt::Source['adoptium'],
+    Exec['apt_update'],
+  ],
+}
+
 package { 'temurin-17-jdk':
   ensure  => installed,
   require => [
     Apt::Source['adoptium'],
     Exec['apt_update'],
+    Package['temurin-21-jdk'],
   ],
 }
 ~> exec { 'update-java-alternatives':
