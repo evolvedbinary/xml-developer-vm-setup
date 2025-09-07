@@ -27,24 +27,24 @@ cd ~/hetzner
 
 sudo uvt-simplestreams-libvirt sync --source=http://cloud-images.ubuntu.com/minimal/releases arch=amd64 release=noble
 
-export HN=xmldev1 IP4=188.40.179.161 IP6=2a01:4f8:140:91f0::161
+export HN=xmldev-01 IP4=188.40.179.161 IP6=2a01:4f8:140:91f0::161
 ./create-uvt-kvm.sh --hostname $HN --release noble --memory 16384 --disk 30 --cpu 4 --bridge virbr1 --ip $IP4 --ip6 $IP6 --gateway 6.4.100.114 --gateway6 2a01:4f8:140:91f0::2 --dns 185.12.64.1 --dns 185.12.64.2 --dns-search evolvedbinary.com --autostart
 ```
 
 **NOTE**: There is an issue at the moment with the 2nd private interface not being activated until the VM is shutdown and re-launched. So before you login to the VM fo rthe first time, please wait a few minutes so the VM finishes starting up, and then run:
 
 ```shell
-virsh shutdown xmldev1
+virsh shutdown xmldev-01
 ```
 
-You should then check the status of the VM until it is shutdown. You can do that by running: `virsh domstate xmldev1`. When the state is `shut off`, you can then restart the VM by running:
+You should then check the status of the VM until it is shutdown. You can do that by running: `virsh domstate xmldev-01`. When the state is `shut off`, you can then restart the VM by running:
 
 ```shell
-virsh xmldev1
+virsh xmldev-01
 ```
 
 **NOTE**: The VM specific settings are:
-* `--hostname` `xmldev1`
+* `--hostname` `xmldev-01`
 * `--ip` `188.40.179.161`
 * `--ip6` `2a01:4f8:140:91f0::161`
 
@@ -61,7 +61,7 @@ virsh xmldev1
 
 If you wish to set this up in AWS EC2, then for each Virtual Machine you need should setup a new EC2 instance with the following properties:
 
-1. Name the instance 'xmldev1'. (change the `1` as needed for more machines).
+1. Name the instance 'xmldev-01'. (change the `01` as needed for more machines).
 
 2. Select the `Ubuntu Server 24.04 LTS (HVM), SSD Volume Type` AMI image, and the Architecture `arm64`.
 
@@ -225,12 +225,12 @@ After installation you should be able to access this instance using either one o
 		* **Mac** - Install and run [Microsoft Remote Desktop](https://apps.apple.com/us/app/microsoft-remote-desktop/id1295203466?mt=12) from the Apple Store.
 		* **Linux** - run `rdesktop` (Ubuntu install: `apt-get install -y rdesktop && rdesktop`)
 	* Connection Settings:
-		* **Host**: The IP address or FQDN of the remote machine (e.g. `xmldev1.evolvedbinary.com`)
+		* **Host**: The IP address or FQDN of the remote machine (e.g. `xmldev-01.evolvedbinary.com`)
 		* **Username**: `ubuntu`
 		* **Password**: *the password you set above for `default_user_password`*
 
 
 2. Indirectly via the Guacamole website by visiting the website (e.g. [https://melon.evolvedbinary.com](https://melon.evolvedbinary.com)) in your web browser.
 	* Login details:
-		* **Username**: `xmldev1` (replace 1 with the number of the instance)
+		* **Username**: `xmldev-01` (replace `01` with the number of the instance)
 		* **Password**: *the password you set above for `xmldev_default_user_password`*

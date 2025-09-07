@@ -84,10 +84,10 @@ file { '/etc/guacamole/guacamole.properties':
 
 $user_mapping = @("USER_MAPPING_EOF":xml/L)
   <user-mapping>
-      <authorize username="xmldev1" password="xmldev">
-          <connection name="xmldev1">
+      <authorize username="xmldev-01" password="xmldev">
+          <connection name="xmldev-01">
               <protocol>rdp</protocol>
-              <param name="hostname">xmldev1.evolvedbinary.com</param>
+              <param name="hostname">xmldev-01.evolvedbinary.com</param>
               <param name="port">3389</param>
               <param name="username">ubuntu</param>
               <param name="password">${xmldev_default_user_password}</param>
@@ -101,10 +101,10 @@ $user_mapping = @("USER_MAPPING_EOF":xml/L)
               <param name="drive-path">/guacamole-drive</param>
           </connection>
       </authorize>
-      <authorize username="xmldev2" password="xmldev">
-          <connection name="xmldev2">
+      <authorize username="xmldev-02" password="xmldev">
+          <connection name="xmldev-02">
               <protocol>rdp</protocol>
-              <param name="hostname">xmldev2.evolvedbinary.com</param>
+              <param name="hostname">xmldev-02.evolvedbinary.com</param>
               <param name="port">3389</param>
               <param name="username">ubuntu</param>
               <param name="password">${xmldev_default_user_password}</param>
@@ -118,10 +118,10 @@ $user_mapping = @("USER_MAPPING_EOF":xml/L)
               <param name="drive-path">/guacamole-drive</param>
           </connection>
       </authorize>
-      <authorize username="xmldev3" password="xmldev">
-          <connection name="xmldev3">
+      <authorize username="xmldev-03" password="xmldev">
+          <connection name="xmldev-03">
               <protocol>rdp</protocol>
-              <param name="hostname">xmldev3.evolvedbinary.com</param>
+              <param name="hostname">xmldev-03.evolvedbinary.com</param>
               <param name="port">3389</param>
               <param name="username">ubuntu</param>
               <param name="password">${xmldev_default_user_password}</param>
@@ -135,10 +135,10 @@ $user_mapping = @("USER_MAPPING_EOF":xml/L)
               <param name="drive-path">/guacamole-drive</param>
           </connection>
       </authorize>
-      <authorize username="xmldev4" password="xmldev">
-          <connection name="xmldev4">
+      <authorize username="xmldev-04" password="xmldev">
+          <connection name="xmldev-04">
               <protocol>rdp</protocol>
-              <param name="hostname">xmldev4.evolvedbinary.com</param>
+              <param name="hostname">xmldev-04.evolvedbinary.com</param>
               <param name="port">3389</param>
               <param name="username">ubuntu</param>
               <param name="password">${xmldev_default_user_password}</param>
@@ -152,10 +152,10 @@ $user_mapping = @("USER_MAPPING_EOF":xml/L)
               <param name="drive-path">/guacamole-drive</param>
           </connection>
       </authorize>
-      <authorize username="xmldev5" password="xmldev">
-          <connection name="xmldev5">
+      <authorize username="xmldev-05" password="xmldev">
+          <connection name="xmldev-05">
               <protocol>rdp</protocol>
-              <param name="hostname">xmldev5.evolvedbinary.com</param>
+              <param name="hostname">xmldev-05.evolvedbinary.com</param>
               <param name="port">3389</param>
               <param name="username">ubuntu</param>
               <param name="password">${xmldev_default_user_password}</param>
@@ -169,10 +169,10 @@ $user_mapping = @("USER_MAPPING_EOF":xml/L)
               <param name="drive-path">/guacamole-drive</param>
           </connection>
       </authorize>
-      <authorize username="xmldev6" password="xmldev">
-          <connection name="xmldev6">
+      <authorize username="xmldev-06" password="xmldev">
+          <connection name="xmldev-06">
               <protocol>rdp</protocol>
-              <param name="hostname">xmldev6.evolvedbinary.com</param>
+              <param name="hostname">xmldev-06.evolvedbinary.com</param>
               <param name="port">3389</param>
               <param name="username">ubuntu</param>
               <param name="password">${xmldev_default_user_password}</param>
@@ -186,10 +186,10 @@ $user_mapping = @("USER_MAPPING_EOF":xml/L)
               <param name="drive-path">/guacamole-drive</param>
           </connection>
         </authorize>
-        <authorize username="xmldev7" password="xmldev">
-          <connection name="xmldev7">
+        <authorize username="xmldev-07" password="xmldev">
+          <connection name="xmldev-07">
               <protocol>rdp</protocol>
-              <param name="hostname">xmldev7.evolvedbinary.com</param>
+              <param name="hostname">xmldev-07.evolvedbinary.com</param>
               <param name="port">3389</param>
               <param name="username">ubuntu</param>
               <param name="password">${xmldev_default_user_password}</param>
@@ -203,10 +203,10 @@ $user_mapping = @("USER_MAPPING_EOF":xml/L)
               <param name="drive-path">/guacamole-drive</param>
           </connection>
         </authorize>
-        <authorize username="xmldev8" password="xmldev">
-          <connection name="xmldev8">
+        <authorize username="xmldev-08" password="xmldev">
+          <connection name="xmldev-08">
               <protocol>rdp</protocol>
-              <param name="hostname">xmldev8.evolvedbinary.com</param>
+              <param name="hostname">xmldev-08.evolvedbinary.com</param>
               <param name="port">3389</param>
               <param name="username">ubuntu</param>
               <param name="password">${xmldev_default_user_password}</param>
@@ -220,10 +220,10 @@ $user_mapping = @("USER_MAPPING_EOF":xml/L)
               <param name="drive-path">/guacamole-drive</param>
           </connection>
         </authorize>
-        <authorize username="xmldev9" password="xmldev">
-          <connection name="xmldev9">
+        <authorize username="xmldev-09" password="xmldev">
+          <connection name="xmldev-09">
               <protocol>rdp</protocol>
-              <param name="hostname">xmldev9.evolvedbinary.com</param>
+              <param name="hostname">xmldev-09.evolvedbinary.com</param>
               <param name="port">3389</param>
               <param name="username">ubuntu</param>
               <param name="password">${xmldev_default_user_password}</param>
@@ -237,10 +237,10 @@ $user_mapping = @("USER_MAPPING_EOF":xml/L)
               <param name="drive-path">/guacamole-drive</param>
           </connection>
         </authorize>
-        <authorize username="xmldev10" password="xmldev">
-          <connection name="xmldev10">
+        <authorize username="xmldev-10" password="xmldev">
+          <connection name="xmldev-10">
               <protocol>rdp</protocol>
-              <param name="hostname">xmldev10.evolvedbinary.com</param>
+              <param name="hostname">xmldev-10.evolvedbinary.com</param>
               <param name="port">3389</param>
               <param name="username">ubuntu</param>
               <param name="password">${xmldev_default_user_password}</param>
