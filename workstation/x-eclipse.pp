@@ -2,7 +2,7 @@
 # Puppet Script for Eclipse IDE on Ubuntu 24.04
 ###
 
-$eclipse_version = '2024-09'
+$eclipse_version = '2025-06'
 
 file { "/opt/eclipse-${eclipse_version}":
   ensure  => directory,

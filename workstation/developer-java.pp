@@ -4,7 +4,7 @@
 
 include apt
 
-$maven_version = '3.9.8'
+$maven_version = '3.9.11'
 
 # Install Adoptium Temurin JDK 17 as default (oXygen XML Editor only support Oracle or Temurin JDKs), and JDK 21 (needed for Elemental)
 apt::source { 'adoptium':
