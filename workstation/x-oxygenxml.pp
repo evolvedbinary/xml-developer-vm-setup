@@ -1,5 +1,5 @@
 ###
-# Puppet Script for oXygen XML Editor on Ubuntu 22.04
+# Puppet Script for oXygen XML Editor on Ubuntu 24.04
 ###
 
 $oxygen_version = '26.0'

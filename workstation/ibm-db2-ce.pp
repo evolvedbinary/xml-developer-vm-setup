@@ -1,5 +1,5 @@
 ###
-# Puppet Script for IBM Db2 Community Edition on Ubuntu 22.04
+# Puppet Script for IBM Db2 Community Edition on Ubuntu 24.04
 ###
 $ibm_db2_major_version = '11'
 $ibm_db2_minor_version = '5'
@@ -93,6 +93,24 @@ package { 'libnuma1':
   ensure => installed,
 }
 
+package { 'binutils':
+  ensure => installed,
+}
+
+package { 'libaio-dev':
+  ensure => installed,
+}
+
+# NOTE(AR) IBM DB2 setup seems to require this file, but it is not present in the 'libaio-dev' package
+file { '/usr/lib/x86_64-linux-gnu/libaio.so.1':
+  ensure  => link,
+  target  => '/usr/lib/x86_64-linux-gnu/libaio.so.1t64.0.2',
+  replace => false,
+  owner   => 'root',
+  group   => 'root',
+  require => Package['libaio-dev'],
+}
+
 exec { 'install-ibm-db2':
   command  => "/tmp/server_dec/db2setup -r ${ibm_db2_setup_response_file}",
   user     => 'root',
@@ -103,6 +121,9 @@ exec { 'install-ibm-db2':
     Exec['download-ibm-db2'],
     File['ibm-db2-setup-response-file'],
     Package['libnuma1'],
+    Package['binutils'],
+    Package['libaio-dev'],
+    File['/usr/lib/x86_64-linux-gnu/libaio.so.1'],
   ],
 }
 

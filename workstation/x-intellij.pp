@@ -1,5 +1,5 @@
 ###
-# Puppet Script for IntelliJ IDEA CE on Ubuntu 22.04
+# Puppet Script for IntelliJ IDEA CE on Ubuntu 24.04
 ###
 
 $intellij_idea_version = '2023.3.3'

@@ -1,5 +1,5 @@
 ###
-# Puppet Script for Google Chrome on Ubuntu 22.04
+# Puppet Script for Google Chrome on Ubuntu 24.04
 ###
 
 exec { 'download-google-chrome-deb':

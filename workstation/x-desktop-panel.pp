@@ -1,5 +1,5 @@
 ###
-# Puppet Script for configuring LXQT Panel Shortcuts on Ubuntu 22.04
+# Puppet Script for configuring LXQT Panel Shortcuts on Ubuntu 24.04
 ###
 
 file { 'dot-config':

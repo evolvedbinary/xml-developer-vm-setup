@@ -1,5 +1,5 @@
 ###
-# Puppet Script for Saxon HE 12 on Ubuntu 22.04
+# Puppet Script for Saxon HE 12 on Ubuntu 24.04
 ###
 
 $saxon_download_version = '12-5'

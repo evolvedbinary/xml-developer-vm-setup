@@ -1,11 +1,11 @@
 ###
-# Puppet Script for a Base System on Ubuntu 22.04
+# Puppet Script for a Base System on Ubuntu 24.04
 ###
 
 include ufw
 
 # Set the version of Ubuntu
-$ubuntu_version = '22.04'
+$ubuntu_version = '24.04'
 $default_user = 'ubuntu'
 
 # setup automatic security updates

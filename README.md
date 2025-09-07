@@ -10,7 +10,7 @@ The following instructions will enable you to setup two things:
 ## Obtaining Servers
 
 This can be setup either in [AWS EC2](https://aws.amazon.com/ec2/), or another Virtual Environment such as KVM running on a Linux Server.
-The environment (which provided 1x Guacamole Server, and 8x "The Complete XML Developer"  Virtual Machines) and that was used for teaching "The Complete XML Developer" in London in February 2024 was Ubuntu 22.04 running on a bare-metal server leased by Evolved Binary from [Hetzner](https://www.hetzner.com/) in Germany, with the following configuration:
+The environment (which provided 1x Guacamole Server, and 8x "The Complete XML Developer"  Virtual Machines) and that was used for teaching "The Complete XML Developer" in London in February 2024 was Ubuntu 24.04 running on a bare-metal server leased by Evolved Binary from [Hetzner](https://www.hetzner.com/) in Germany, with the following configuration:
 * Xeon E5-1650 v3 @ 3.50GHz (6 Cores / 12 Threads)
 * 128 GB RAM
 * 2x 480GB SSD in RAID 1
@@ -19,16 +19,16 @@ Below we detail two options for setting up Virtual Machines: 1. Hetzner bare-met
 
 ### 1. Setting up a new Linux KVM VM (optional)
 
-If you have leased a server from someone like Hetzner with Ubuntu 22.04 installed and wish to set this all up using KVM to host your VMs, then on the server (KVM host) you should run the following commands (assuming an Evolved Binary Server in Hetzner):
+If you have leased a server from someone like Hetzner with Ubuntu 24.04 installed and wish to set this all up using KVM to host your VMs, then on the server (KVM host) you should run the following commands (assuming an Evolved Binary Server in Hetzner):
 
 ```shell
 git clone --single-branch --branch hetzner https://github.com/adamretter/soyoustart hetzner
 cd ~/hetzner
 
-sudo uvt-simplestreams-libvirt sync --source=http://cloud-images.ubuntu.com/minimal/releases arch=amd64 release=jammy
+sudo uvt-simplestreams-libvirt sync --source=http://cloud-images.ubuntu.com/minimal/releases arch=amd64 release=noble
 
 export HN=xmldev1 IP4=188.40.179.161 IP6=2a01:4f8:140:91f0::161
-./create-uvt-kvm.sh --hostname $HN --release jammy --memory 16384 --disk 30 --cpu 4 --bridge virbr1 --ip $IP4 --ip6 $IP6 --gateway 6.4.100.114 --gateway6 2a01:4f8:140:91f0::2 --dns 185.12.64.1 --dns 185.12.64.2 --dns-search evolvedbinary.com --autostart
+./create-uvt-kvm.sh --hostname $HN --release noble --memory 16384 --disk 30 --cpu 4 --bridge virbr1 --ip $IP4 --ip6 $IP6 --gateway 6.4.100.114 --gateway6 2a01:4f8:140:91f0::2 --dns 185.12.64.1 --dns 185.12.64.2 --dns-search evolvedbinary.com --autostart
 ```
 
 **NOTE**: There is an issue at the moment with the 2nd private interface not being activated until the VM is shutdown and re-launched. So before you login to the VM fo rthe first time, please wait a few minutes so the VM finishes starting up, and then run:
@@ -63,7 +63,7 @@ If you wish to set this up in AWS EC2, then for each Virtual Machine you need sh
 
 1. Name the instance 'xmldev1'. (change the `1` as needed for more machines).
 
-2. Select the `Ubuntu Server 22.04 LTS (HVM), SSD Volume Type` AMI image, and the Architecture `arm64`.
+2. Select the `Ubuntu Server 24.04 LTS (HVM), SSD Volume Type` AMI image, and the Architecture `arm64`.
 
 3. Select `m6g.xlarge` instance type. (i.e.: 4vCPU, 16GB Memory, 1x237 NVMe SSD, $0.1776 / hour).
 
@@ -120,7 +120,7 @@ After installation Guacamole's Web Server should be accessible from: [http://loc
 
 ## Installing a Complete XML Developer Workstation
 
-You can install one or more Complete XML Developer workstations, each should be configured within its own virtual (or physical) machine. We expect to start from a clean Ubuntu Server, or Ubuntu Cloud Image install. This has been tested with Ubuntu version 22.04 LTS (arm64).
+You can install one or more Complete XML Developer workstations, each should be configured within its own virtual (or physical) machine. We expect to start from a clean Ubuntu Server, or Ubuntu Cloud Image install. This has been tested with Ubuntu version 24.04 LTS (arm64).
 
 ### Complete XML Developer Software Environment
 
