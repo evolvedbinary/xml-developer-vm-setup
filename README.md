@@ -141,11 +141,11 @@ The following software will be configured:
 
 * XML Environment
 	* Elemental 7.4.0-SNAPSHOT (build from source)
-	* Oxygen XML Editor
-	* Saxon HE 12.5
+	* Oxygen XML Editor 21.1
+	* Saxon HE 12.8
 
 * Database Environment
-	* IBM DB2 Community Edition 11.5.9
+	* IBM DB2 Community Edition 12.1.2
 		* DB2 JDBC (level 4) Driver
 	* IBM Data Studio 4.1.4.0
 	* PostgreSQL
