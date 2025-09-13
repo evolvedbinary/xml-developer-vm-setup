@@ -14,16 +14,16 @@ exec { 'download-exercises-zip':
   command => "/usr/bin/curl -L ${exercises_url} -o /tmp/Exercises.zip",
   creates => "${exercises_install_path}/Samples",
   require => [
-    # Package['curl'],
+    Package['curl'],
     File[$exercises_install_path]
   ],
 }
 
 exec { 'install-exercises':
-  command => "/usr/bin/unzip /tmp/Exercises.zip -d /home/${default_user}/Desktop",
+  command => "/usr/bin/unzip -o /tmp/Exercises.zip -d /home/${default_user}/Desktop",
   creates => "${exercises_install_path}/Samples",
   require => [
-    # Package['zip'],
+    Package['zip'],
     Exec['download-exercises-zip'],
   ],
 }
