@@ -5,6 +5,8 @@
 include apt
 
 $maven_version = '3.9.11'
+$javafx_17_version = '17.0.16'
+$javafx_21_version = '21.0.8'
 
 # Install Adoptium Temurin JDK 17 as default (oXygen XML Editor only support Oracle or Temurin JDKs), and JDK 21 (needed for Elemental)
 apt::source { 'adoptium':
@@ -50,28 +52,44 @@ file_line { 'JAVA_HOME':
   require => Package['temurin-17-jdk'],
 }
 
-# Install JavaFX 17
-exec { 'download-openjfx17':
-  command => 'wget https://download2.gluonhq.com/openjfx/17.0.14/openjfx-17.0.14_linux-x64_bin-jmods.zip -O /tmp/openjdk-jmods.zip',
+# Install JavaFX 21
+exec { 'download-openjfx21':
+  command => "wget https://download2.gluonhq.com/openjfx/${javafx_21_version}/openjfx-${javafx_21_version}_linux-x64_bin-sdk.zip -O /tmp/openjfx-${javafx_21_version}_linux-x64_bin-sdk.zip",
   path    => '/usr/bin',
   user    => 'root',
-  creates => '/usr/lib/jvm/javafx-jmods-17.0.14',
+  creates => "/usr/lib/jvm/javafx-sdk-${javafx_21_version}",
+  require => Package['wget'],
+} ~> exec { 'extract-openjfx21':
+  command => "unzip /tmp/openjfx-${javafx_21_version}_linux-x64_bin-sdk.zip -d /usr/lib/jvm",
+  path    => '/usr/bin',
+  user    => 'root',
+  creates => "/usr/lib/jvm/javafx-sdk-${javafx_21_version}",
+  require => Package['unzip'],
+}
+
+# Install JavaFX 17 (and configure as default in /etc/environment)
+exec { 'download-openjfx17':
+  command => "wget https://download2.gluonhq.com/openjfx/${javafx_17_version}/openjfx-${javafx_17_version}_linux-x64_bin-sdk.zip -O /tmp/openjfx-${javafx_17_version}_linux-x64_bin-sdk.zip",
+  path    => '/usr/bin',
+  user    => 'root',
+  creates => "/usr/lib/jvm/javafx-sdk-${javafx_17_version}",
   require => Package['wget'],
 }
 ~> exec { 'extract-openjfx17':
-  command => 'unzip /tmp/openjdk-jmods.zip -d /usr/lib/jvm',
+  command => "unzip /tmp/openjfx-${javafx_17_version}_linux-x64_bin-sdk.zip -d /usr/lib/jvm",
   path    => '/usr/bin',
   user    => 'root',
-  creates => '/usr/lib/jvm/javafx-jmods-17.0.14',
+  creates => "/usr/lib/jvm/javafx-sdk-${javafx_17_version}",
   require => Package['unzip'],
 }
 ~> file_line { '_JAVA_OPTIONS':
   ensure => present,
   path   => '/etc/environment',
-  line   => '_JAVA_OPTIONS="--module-path=/usr/lib/jvm/javafx-jmods-17.0.14 --add-modules=ALL-MODULE-PATH"',
+  line   => "_JAVA_OPTIONS=\"--module-path=/usr/lib/jvm/javafx-sdk-${javafx_17_version}/lib --add-modules=ALL-MODULE-PATH\"",
   match  => '^_JAVA_OPTIONS\=',
 }
 
+# Install Maven
 exec { 'install-maven':
   command => "curl -L https://archive.apache.org/dist/maven/maven-3/${maven_version}/binaries/apache-maven-${maven_version}-bin.tar.gz | tar zxv -C /opt",
   path    => '/usr/bin',

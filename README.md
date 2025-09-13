@@ -134,7 +134,8 @@ The following software will be configured:
 	* Okular
 
 * Java Development Environment
-	* JDK 17 and 21
+	* JDK 17 and 21 (default: 17)
+		* JavaFX 12 and 21
 	* Apache Maven 3
 	* IntelliJ IDEA CE
 	* Eclipse IDE
