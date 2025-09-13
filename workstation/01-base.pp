@@ -127,6 +127,32 @@ file { 'default_user_code_folder':
   ],
 }
 
+file { 'default_user_local_folder':
+  ensure  => directory,
+  path    => "/home/${default_user}/.local",
+  replace => false,
+  owner   => $default_user,
+  group   => $default_user,
+  mode    => '0700',
+  require => [
+    User['default_user'],
+    File['default_user_home'],
+  ],
+}
+
+file { 'default_user_local_share_folder':
+  ensure  => directory,
+  path    => "/home/${default_user}/.local/share",
+  replace => false,
+  owner   => $default_user,
+  group   => $default_user,
+  mode    => '0700',
+  require => [
+    User['default_user'],
+    File['default_user_local_folder'],
+  ],
+}
+
 ssh_authorized_key { $default_user_ssh_access_key['name']:
   ensure  => present,
   user    => $default_user,
