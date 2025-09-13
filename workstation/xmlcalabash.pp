@@ -22,7 +22,7 @@ exec { 'download-calabash-zip':
   command => "/usr/bin/curl -L https://codeberg.org/xmlcalabash/xmlcalabash3/releases/download/${calabash_version}/xmlcalabash-${calabash_version}.zip -o /tmp/xmlcalabash-${calabash_version}.zip",
   creates => "${calabash_install_path}/xmlcalabash-app-${calabash_version}.jar",
   require => [
-    # Package['curl'],
+    Package['curl'],
     File[$calabash_install_path]
   ],
 }
@@ -31,7 +31,7 @@ exec { 'install-calabash':
   command => "/usr/bin/unzip /tmp/xmlcalabash-${calabash_version}.zip -d /opt",
   creates => "${calabash_install_path}/xmlcalabash-app-${calabash_version}.jar",
   require => [
-    # Package['zip'],
+    Package['zip'],
     Exec['download-calabash-zip']
   ],
 }
