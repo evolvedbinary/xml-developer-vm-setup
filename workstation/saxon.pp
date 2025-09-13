@@ -36,3 +36,11 @@ exec { 'install-saxon':
     Exec['download-saxon-zip']
   ],
 }
+
+file_line { 'SAXON_HOME':
+  ensure  => present,
+  path    => '/etc/environment',
+  line    => 'SAXON_HOME=/opt/saxon',
+  match   => '^SAXON_HOME\=',
+  require => File['/opt/saxon'],
+}
