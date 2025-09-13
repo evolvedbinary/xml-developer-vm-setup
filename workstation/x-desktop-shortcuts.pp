@@ -66,6 +66,26 @@ xdesktop::shortcut { 'Elemental Dashboard':
   ],
 }
 
+xdesktop::shortcut { 'Elemental Java Admin Client':
+  application_path => 'env JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64 /opt/elemental/bin/client.sh',
+  application_icon => "/home/${default_user}/.local/share/icons/elemental.png",
+  startup_notify   => true,
+  user             => $default_user,
+  position         => {
+    provider => 'lxqt',
+    x        => 214,
+    y        => 115,
+  },
+  require          => [
+    Package['desktop'],
+    Package['google-chrome-stable'],
+    File['default_user_desktop_folder'],
+    File['desktop-items-0'],
+    Exec['download-elemental-logo'],
+    Service['elemental'],
+  ],
+}
+
 exec { 'download-eb-favicon-logo':
   command => "wget -O /home/${default_user}/.local/share/icons/eb-favicon-logo.svg https://evolvedbinary.com/images/icons/shape-icon.svg",
   path    => '/usr/bin',
