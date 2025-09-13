@@ -145,6 +145,8 @@ The following software will be configured:
 	* oXygen XML Editor 21.1
 		* Oxygen XSpec Helper View
 	* Saxon HE 12.8
+	* Morgana XProc III EE 1.7
+	* XML Calabash 3.0.16
 
 * Database Environment
 	* IBM DB2 Community Edition 12.1.2
