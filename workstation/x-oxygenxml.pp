@@ -3,6 +3,7 @@
 ###
 
 $oxygen_version = '27.1'
+$xspec_helper_view_version = '2.3.2'
 
 $oxygen_license_xml = @(OXYGEN_LICENSE_XML_EOF:xml/L)
   <?xml version="1.0" encoding="UTF-8"?>
@@ -100,4 +101,39 @@ file { 'oxygen-license':
   mode    => '0664',
   content => $oxygen_license_xml,
   require => File['oxygen-user-settings-path'],
+}
+
+# Add 3rd-party Oxygen XSpec Helper View
+exec { 'download-xspec-support-plugin-oxygen':
+  command => "wget https://github.com/xspec/oXygen-XML-editor-xspec-support/releases/download/${xspec_helper_view_version}/xspec.support-${xspec_helper_view_version}-plugin.zip -O /tmp/xspec.support-${xspec_helper_view_version}-plugin.zip",
+  path    => '/usr/bin',
+  user    => 'root',
+  creates => "/opt/oxygen-${oxygen_version}/plugins/xspec.support-${xspec_helper_view_version}/plugin.xml",
+  require => [
+    Exec['install-oxygen'],
+    Package['wget']
+  ],
+} ~> exec { 'extract-xspec-support-plugin-oxygen':
+  command => "unzip /tmp/xspec.support-${xspec_helper_view_version}-plugin.zip -d /opt/oxygen-${oxygen_version}/plugins",
+  path    => '/usr/bin',
+  user    => 'root',
+  creates => "/opt/oxygen-${oxygen_version}/plugins/xspec.support-${xspec_helper_view_version}/plugin.xml",
+  require => Package['unzip'],
+}
+
+exec { 'download-xspec-support-framework-oxygen':
+  command => "wget https://github.com/xspec/oXygen-XML-editor-xspec-support/releases/download/${xspec_helper_view_version}/xspec.support-${xspec_helper_view_version}-framework.zip -O /tmp/xspec.support-${xspec_helper_view_version}-framework.zip",
+  path    => '/usr/bin',
+  user    => 'root',
+  creates => "/opt/oxygen-${oxygen_version}/frameworks/xspec.support-${xspec_helper_view_version}/xspec.framework",
+  require => [
+    Exec['install-oxygen'],
+    Package['wget']
+  ],
+} ~> exec { 'extract-xspec-support-framework-oxygen':
+  command => "unzip /tmp/xspec.support-${xspec_helper_view_version}-framework.zip -d /opt/oxygen-${oxygen_version}/frameworks",
+  path    => '/usr/bin',
+  user    => 'root',
+  creates => "/opt/oxygen-${oxygen_version}/frameworks/xspec.support-${xspec_helper_view_version}/xspec.framework",
+  require => Package['unzip'],
 }

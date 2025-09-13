@@ -141,7 +141,8 @@ The following software will be configured:
 
 * XML Environment
 	* Elemental 7.4.0-SNAPSHOT (build from source)
-	* Oxygen XML Editor 21.1
+	* oXygen XML Editor 21.1
+		* Oxygen XSpec Helper View
 	* Saxon HE 12.8
 
 * Database Environment
