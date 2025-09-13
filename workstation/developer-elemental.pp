@@ -72,7 +72,7 @@ file { 'sys_elemental_home':
   replace => false,
   owner   => $sys_elemental_user,
   group   => $sys_elemental_group,
-  mode    => '0770',
+  mode    => '0775',
   require => [
     User['sys_elemental_user'],
     Group['sys_elemental_group'],
