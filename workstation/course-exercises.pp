@@ -5,6 +5,9 @@
 $exercises_url = 'https://static.evolvedbinary.com/cxd/Exercises.zip'
 $exercises_install_path = "/home/${default_user}/Desktop/Exercises"
 
+$vocabularies_url = 'https://static.evolvedbinary.com/xmlss/Vocabularies.zip'
+$vocabularies_install_path = "/home/${default_user}/Desktop/Vocabularies"
+
 file { $exercises_install_path:
   ensure  => directory,
   require => File['default_user_desktop_folder'],
@@ -25,5 +28,28 @@ exec { 'install-exercises':
   require => [
     Package['zip'],
     Exec['download-exercises-zip'],
+  ],
+}
+
+file { $vocabularies_install_path:
+  ensure  => directory,
+  require => File['default_user_desktop_folder'],
+}
+
+exec { 'download-vocabularies-zip':
+  command => "/usr/bin/curl -L ${vocabularies_url} -o /tmp/Vocabularies.zip",
+  creates => "${vocabularies_install_path}/adms.ttl",
+  require => [
+    Package['curl'],
+    File[$vocabularies_install_path]
+  ],
+}
+
+exec { 'install-vocabularies':
+  command => "/usr/bin/unzip -o /tmp/Vocabularies.zip -d /home/${default_user}/Desktop",
+  creates => "${vocabularies_install_path}/adms.ttl",
+  require => [
+    Package['zip'],
+    Exec['download-vocabularies-zip'],
   ],
 }
