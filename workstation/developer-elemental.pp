@@ -111,7 +111,7 @@ exec { 'compile-elemental':
     "HOME=/home/${default_user}",
   ],
   user        => $elemental_source_folder_owner,
-  creates     => "${elemental_source_folder}/exist-distribution/target/elemental-distribution-${elemental_version}-dir",
+  creates     => "${elemental_source_folder}/exist-distribution/target/elemental-${elemental_version}-dir",
   timeout     => 600,
   require     => [
     Package['temurin-21-jdk'],
