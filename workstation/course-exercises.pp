@@ -2,7 +2,7 @@
 # Puppet Script for installing the Course Exercises on Ubuntu 24.04
 ###
 
-$exercises_url = 'https://static.evolvedbinary.com/cxd/Exercises.zip'
+$exercises_url = 'https://static.evolvedbinary.com/xmlss25/Exercises.zip'
 $exercises_install_path = "/home/${default_user}/Desktop/Exercises"
 
 $vocabularies_url = 'https://static.evolvedbinary.com/xmlss/Vocabularies.zip'
