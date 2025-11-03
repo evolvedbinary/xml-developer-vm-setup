@@ -13,9 +13,9 @@ $oxygen_license_xml = @(OXYGEN_LICENSE_XML_EOF:xml/L)
         <String>license.26</String>
         <String>------START-LICENSE-KEY------
 
-Registration_Name=adam @ exist-db . org
+Registration_Name=training @ evolvedbinary . com
 
-Company=eXist-db-Open-Source-Project
+Company=Evolved-Binary
 
 Category=Enterprise
 
@@ -25,11 +25,11 @@ Version=27
 
 Number_of_Licenses=1
 
-Date=09-07-2025
+Date=11-03-2025
 
 Trial=30
 
-SGN=MCwCFFbvNx62V/fUy0LBcDPImMCJQOSJAhQQ6gAbwB+YcL0lfsn/cluExNmR6g\=\=
+SGN=MC4CFQCRhQEaoIyHoyNpRAhbktxDxcrDZQIVAI9vENwyMu8l+eGcTn4BSNNQiRy/
 
 
 -------END-LICENSE-KEY-------</String>
