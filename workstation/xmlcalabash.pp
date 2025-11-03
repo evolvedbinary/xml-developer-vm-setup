@@ -2,7 +2,7 @@
 # Puppet Script for XML Calabash 3 on Ubuntu 24.04
 ###
 
-$calabash_version = '3.0.16'
+$calabash_version = '3.0.24'
 $calabash_install_path = "/opt/xmlcalabash-${calabash_version}"
 
 file { $calabash_install_path:

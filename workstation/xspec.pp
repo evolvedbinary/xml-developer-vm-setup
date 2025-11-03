@@ -2,7 +2,7 @@
 # Puppet Script for XSpec 3 on Ubuntu 24.04
 ###
 
-$xspec_version = '3.3.1'
+$xspec_version = '3.3.2'
 $xspec_install_path = "/opt/xspec-${calabash_version}"
 $xspec_group = 'xspec'
 

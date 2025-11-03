@@ -137,17 +137,17 @@ The following software will be configured:
 	* JDK 17 and 21 (default: 17)
 		* JavaFX 12 and 21
 	* Apache Maven 3
-	* IntelliJ IDEA CE
-	* Eclipse IDE
+	* IntelliJ IDEA CE 2025.2.4
+	* Eclipse IDE 2025-09
 
 * XML Environment
 	* Elemental 7.4.0-SNAPSHOT (build from source)
 	* oXygen XML Editor 21.1
 		* Oxygen XSpec Helper View
-	* Saxon HE 12.8
+	* Saxon HE 12.9
 	* Morgana XProc III EE 1.7
-	* XML Calabash 3.0.16
-	* XSpec 3.3.1
+	* XML Calabash 3.0.24
+	* XSpec 3.3.2
 
 * Database Environment
 	* IBM DB2 Community Edition 12.1.2

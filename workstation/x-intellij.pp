@@ -3,7 +3,7 @@
 ###
 
 $intellij_idea_version_short = '2025.2'
-$intellij_idea_version = "${intellij_idea_version_short}.1"
+$intellij_idea_version = "${intellij_idea_version_short}.4"
 
 file { "/opt/idea-IC-${intellij_idea_version}":
   ensure  => directory,
