@@ -46,7 +46,7 @@ xdesktop::shortcut { 'Elemental Dashboard':
 }
 
 xdesktop::shortcut { 'Elemental Java Admin Client':
-  application_path => 'env JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64 /opt/elemental/bin/client.sh',
+  application_path => 'env JAVA_HOME=/usr/lib/jvm/temurin-25-jdk-amd64 /opt/elemental/bin/client.sh',
   application_icon => "/home/${default_user}/.local/share/icons/elemental.png",
   startup_notify   => true,
   user             => $default_user,

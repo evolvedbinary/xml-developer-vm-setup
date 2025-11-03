@@ -107,14 +107,14 @@ exec { 'compile-elemental':
   cwd         => $elemental_source_folder,
   command     => "${elemental_source_folder}/build.sh quick",
   environment => [
-    'JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64',
+    'JAVA_HOME=/usr/lib/jvm/temurin-25-jdk-amd64',
     "HOME=/home/${default_user}",
   ],
   user        => $elemental_source_folder_owner,
   creates     => "${elemental_source_folder}/exist-distribution/target/elemental-${elemental_version}-dir",
   timeout     => 600,
   require     => [
-    Package['temurin-21-jdk'],
+    Package['temurin-25-jdk'],
     File['/opt/maven']
   ],
 }
@@ -143,7 +143,7 @@ exec { 'compile-elemental':
 ~> exec { 'set-elemental-db-admin-password':
   command     => "${sys_elemental_home}/bin/client.sh -s -l --user admin --xpath \"sm:passwd('admin', '${elemental_db_admin_password}')\"",
   environment => [
-    'JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64',
+    'JAVA_HOME=/usr/lib/jvm/temurin-25-jdk-amd64',
   ],
   creates     => "${sys_elemental_data}/collections.dbx",
   user        => $sys_elemental_user,
@@ -174,7 +174,7 @@ After=syslog.target
 Type=simple
 User=${sys_elemental_user}
 Group=${sys_elemental_group}
-Environment=\"JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64\"
+Environment=\"JAVA_HOME=/usr/lib/jvm/temurin-25-jdk-amd64\"
 ExecStart=${sys_elemental_home}/bin/startup.sh
 
 [Install]

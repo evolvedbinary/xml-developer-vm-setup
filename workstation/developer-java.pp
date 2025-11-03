@@ -6,9 +6,9 @@ include apt
 
 $maven_version = '3.9.11'
 $javafx_17_version = '17.0.16'
-$javafx_21_version = '21.0.8'
+$javafx_25_version = '25.0.1'
 
-# Install Adoptium Temurin JDK 17 as default (oXygen XML Editor only support Oracle or Temurin JDKs), and JDK 21 (needed for Elemental)
+# Install Adoptium Temurin JDK 17 as default (oXygen XML Editor only support Oracle or Temurin JDKs), and JDK 25 (needed for Elemental)
 apt::source { 'adoptium':
   location => 'https://packages.adoptium.net/artifactory/deb',
   release  => 'noble',
@@ -22,7 +22,7 @@ apt::source { 'adoptium':
   notify   => Exec['apt_update'],
 }
 
-package { 'temurin-21-jdk':
+package { 'temurin-25-jdk':
   ensure  => installed,
   require => [
     Apt::Source['adoptium'],
@@ -35,7 +35,7 @@ package { 'temurin-17-jdk':
   require => [
     Apt::Source['adoptium'],
     Exec['apt_update'],
-    Package['temurin-21-jdk'],
+    Package['temurin-25-jdk'],
   ],
 }
 ~> exec { 'update-java-alternatives':
@@ -52,18 +52,18 @@ file_line { 'JAVA_HOME':
   require => Package['temurin-17-jdk'],
 }
 
-# Install JavaFX 21
-exec { 'download-openjfx21':
-  command => "wget https://download2.gluonhq.com/openjfx/${javafx_21_version}/openjfx-${javafx_21_version}_linux-x64_bin-sdk.zip -O /tmp/openjfx-${javafx_21_version}_linux-x64_bin-sdk.zip",
+# Install JavaFX 25
+exec { 'download-openjfx25':
+  command => "wget https://download2.gluonhq.com/openjfx/${javafx_25_version}/openjfx-${javafx_25_version}_linux-x64_bin-sdk.zip -O /tmp/openjfx-${javafx_25_version}_linux-x64_bin-sdk.zip",
   path    => '/usr/bin',
   user    => 'root',
-  creates => "/usr/lib/jvm/javafx-sdk-${javafx_21_version}",
+  creates => "/usr/lib/jvm/javafx-sdk-${javafx_25_version}",
   require => Package['wget'],
-} ~> exec { 'extract-openjfx21':
-  command => "unzip /tmp/openjfx-${javafx_21_version}_linux-x64_bin-sdk.zip -d /usr/lib/jvm",
+} ~> exec { 'extract-openjfx25':
+  command => "unzip /tmp/openjfx-${javafx_25_version}_linux-x64_bin-sdk.zip -d /usr/lib/jvm",
   path    => '/usr/bin',
   user    => 'root',
-  creates => "/usr/lib/jvm/javafx-sdk-${javafx_21_version}",
+  creates => "/usr/lib/jvm/javafx-sdk-${javafx_25_version}",
   require => Package['unzip'],
 }
 
