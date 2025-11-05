@@ -20,7 +20,7 @@ file { '/opt/saxon':
 }
 
 exec { 'download-saxon-zip':
-  command => "/usr/bin/curl -L https://github.com/Saxonica/Saxon-HE/releases/download/SaxonHE-${saxon_download_version}/SaxonHE${saxon_download_version}J.zip -o /tmp/SaxonHE${saxon_download_version}J.zip",
+  command => "/usr/bin/curl -L https://github.com/Saxonica/Saxon-HE/releases/download/SaxonHE${saxon_download_version}/SaxonHE${saxon_download_version}J.zip -o /tmp/SaxonHE${saxon_download_version}J.zip",
   creates => "${saxon_install_path}/saxon-he-${saxon_jar_version}.jar",
   require => [
     Package['curl'],
