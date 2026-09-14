@@ -138,7 +138,7 @@ The following software will be configured:
 		* JavaFX 17 and 25
 	* Apache Maven 3
 	* IntelliJ IDEA CE 2026.2.2
-	* Eclipse IDE 2025-09
+	* Eclipse IDE 2026-09
 
 * XML Environment
 	* Elemental 7.4.0-SNAPSHOT (build from source)
