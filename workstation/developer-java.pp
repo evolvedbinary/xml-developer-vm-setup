@@ -4,7 +4,7 @@
 
 include apt
 
-$maven_version = '3.9.11'
+$maven_version = '3.9.16'
 $javafx_17_version = '17.0.16'
 $javafx_25_version = '25.0.1'
 
