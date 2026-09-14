@@ -2,8 +2,8 @@
 # Puppet Script for Saxon HE 12 on Ubuntu
 ###
 
-$saxon_download_version = '12-9'
-$saxon_jar_version = '12.9'
+$saxon_download_version = '12-10'
+$saxon_jar_version = '12.10'
 $saxon_install_path = "/opt/saxon-${saxon_jar_version}"
 
 file { $saxon_install_path:

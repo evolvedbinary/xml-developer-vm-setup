@@ -145,7 +145,7 @@ The following software will be configured:
 	* oXygen XML Editor 28.1
 		* Oxygen XSpec Helper View
         * Protege 5.6.9
-	* Saxon HE 12.9
+	* Saxon HE 12.10
 	* Morgana XProc III EE 1.7
 	* XML Calabash 3.0.24
 	* XSpec 3.3.2
