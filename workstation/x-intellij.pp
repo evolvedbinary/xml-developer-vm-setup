@@ -2,10 +2,10 @@
 # Puppet Script for IntelliJ IDEA CE on Ubuntu
 ###
 
-$intellij_idea_version_short = '2025.2'
-$intellij_idea_version = "${intellij_idea_version_short}.4"
+$intellij_idea_version_short = '2026.2'
+$intellij_idea_version = "${intellij_idea_version_short}.2"
 
-file { "/opt/idea-IC-${intellij_idea_version}":
+file { "/opt/idea-${intellij_idea_version}":
   ensure  => directory,
   replace => false,
   owner   => 'root',
@@ -13,28 +13,28 @@ file { "/opt/idea-IC-${intellij_idea_version}":
 }
 
 exec { 'install-intellij-ce':
-  command => "curl -L https://download.jetbrains.com/idea/ideaIC-${intellij_idea_version}.tar.gz | tar zxv -C /opt/idea-IC-${intellij_idea_version} --strip-components=1",
+  command => "curl -L https://download.jetbrains.com/idea/idea-${intellij_idea_version}.tar.gz | tar zxv -C /opt/idea-${intellij_idea_version} --strip-components=1",
   path    => '/usr/bin',
   user    => 'root',
-  creates => "/opt/idea-IC-${intellij_idea_version}/bin/idea.sh",
+  creates => "/opt/idea-${intellij_idea_version}/bin/idea.sh",
   require => [
-    File["/opt/idea-IC-${intellij_idea_version}"],
+    File["/opt/idea-${intellij_idea_version}"],
     Package['curl']
   ],
 }
 
-file { '/opt/idea-IC':
+file { '/opt/idea':
   ensure  => link,
-  target  => "/opt/idea-IC-${intellij_idea_version}",
+  target  => "/opt/idea-${intellij_idea_version}",
   replace => false,
   owner   => 'root',
   group   => 'root',
-  require => File["/opt/idea-IC-${intellij_idea_version}"],
+  require => File["/opt/idea-${intellij_idea_version}"],
 }
 
 xdesktop::shortcut { 'IntelliJ IDEA CE':
-  application_path => '/opt/idea-IC/bin/idea',
-  application_icon => '/opt/idea-IC/bin/idea.svg',
+  application_path => '/opt/idea/bin/idea',
+  application_icon => '/opt/idea/bin/idea.svg',
   user             => $default_user,
   position         => {
     provider => 'lxqt',
@@ -45,7 +45,7 @@ xdesktop::shortcut { 'IntelliJ IDEA CE':
     Package['desktop'],
     File['default_user_desktop_folder'],
     File['desktop-items-0'],
-    File['/opt/idea-IC'],
+    File['/opt/idea'],
   ],
 }
 
@@ -58,7 +58,7 @@ file { "/home/${default_user}/.local/share/JetBrains":
   require => File['default_user_local_share_folder'],
 }
 
-file { "/home/${default_user}/.local/share/JetBrains/IdeaIC${intellij_idea_version_short}":
+file { "/home/${default_user}/.local/share/JetBrains/Idea${intellij_idea_version_short}":
   ensure  => directory,
   replace => false,
   owner   => $default_user,
@@ -70,16 +70,16 @@ file { "/home/${default_user}/.local/share/JetBrains/IdeaIC${intellij_idea_versi
 # Install 3rd-party LNKD.tech Editor Plugin for RDF
 exec { 'download-lnkd-tech-plugin-zip':
   command => '/usr/bin/curl -L "https://downloads.marketplace.jetbrains.com/files/12802/744673/LNKD.tech_Editor-2025.0.1.zip?updateId=744673&pluginId=12802&family=INTELLIJ" -o /tmp/LNKD.tech_Editor-2025.0.1.zip',
-  creates => "/home/${default_user}/.local/share/JetBrains/IdeaIC${intellij_idea_version_short}/LNKD.tech Editor",
+  creates => "/home/${default_user}/.local/share/JetBrains/Idea${intellij_idea_version_short}/LNKD.tech Editor",
   require => [
     Package['curl'],
-    File["/home/${default_user}/.local/share/JetBrains/IdeaIC${intellij_idea_version_short}"]
+    File["/home/${default_user}/.local/share/JetBrains/Idea${intellij_idea_version_short}"]
   ],
 }
 
 exec { 'install-lnkd-tech-plugin':
-  command => "/usr/bin/unzip /tmp/LNKD.tech_Editor-2025.0.1.zip -d /home/${default_user}/.local/share/JetBrains/IdeaIC${intellij_idea_version_short}",
-  creates => "/home/${default_user}/.local/share/JetBrains/IdeaIC${intellij_idea_version_short}/LNKD.tech Editor",
+  command => "/usr/bin/unzip /tmp/LNKD.tech_Editor-2025.0.1.zip -d /home/${default_user}/.local/share/JetBrains/Idea${intellij_idea_version_short}",
+  creates => "/home/${default_user}/.local/share/JetBrains/Idea${intellij_idea_version_short}/LNKD.tech Editor",
   require => [
     Package['zip'],
     Exec['download-lnkd-tech-plugin-zip']

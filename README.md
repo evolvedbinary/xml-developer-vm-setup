@@ -137,7 +137,7 @@ The following software will be configured:
 	* JDK 17 and 25 (default: 17)
 		* JavaFX 17 and 25
 	* Apache Maven 3
-	* IntelliJ IDEA CE 2025.2.4
+	* IntelliJ IDEA CE 2026.2.2
 	* Eclipse IDE 2025-09
 
 * XML Environment
