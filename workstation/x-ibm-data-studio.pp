@@ -1,5 +1,5 @@
 ###
-# Puppet Script for IBM Data Studio on Ubuntu 24.04
+# Puppet Script for IBM Data Studio on Ubuntu
 ###
 
 $ibm_data_studio_setup_path = '/tmp/ibm-data-studio-setup'

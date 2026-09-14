@@ -1,5 +1,5 @@
 ###
-# Puppet Script for Morgana XProc III on Ubuntu 24.04
+# Puppet Script for Morgana XProc III on Ubuntu
 ###
 
 $morgana_ee_version = '1.7'
@@ -28,7 +28,7 @@ exec { 'download-morgana-zip':
 }
 
 exec { 'install-morgana':
-  command => "/usr/bin/unzip /tmp/MorganaXProc-IIIee-${morgana_ee_version}.zip -d /opt -x \"__MACOSX/*\"",
+  command => "/usr/bin/unzip /tmp/MorganaXProc-IIIee-${morgana_ee_version}.zip -d ${morgana_install_path} -x \"__MACOSX/*\"",
   creates => "${morgana_install_path}/MorganaXProc-IIIee.jar",
   require => [
     Package['zip'],

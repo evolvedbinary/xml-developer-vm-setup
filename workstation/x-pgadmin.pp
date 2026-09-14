@@ -1,16 +1,16 @@
 ###
-# Puppet Script for pgAdmin on Ubuntu 24.04
+# Puppet Script for pgAdmin on Ubuntu
 ###
 
 include apt
 
 apt::source { 'pgadmin':
-  location => 'https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/noble',
+  location => "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/${ubuntu_codename}",
   release  => 'pgadmin4',
   repos    => 'main',
   comment  => 'pgAdmin',
   key      => {
-    id     => 'E8697E2EEF76C02D3A6332778881B2A8210976F2',
+    name   => 'pgadmin.asc',
     source => 'https://www.pgadmin.org/static/packages_pgadmin_org.pub',
   },
 }

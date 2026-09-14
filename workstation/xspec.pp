@@ -1,5 +1,5 @@
 ###
-# Puppet Script for XSpec 3 on Ubuntu 24.04
+# Puppet Script for XSpec 3 on Ubuntu
 ###
 
 $xspec_version = '3.3.2'

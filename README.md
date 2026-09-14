@@ -10,7 +10,7 @@ The following instructions will enable you to setup two things:
 ## Obtaining Servers
 
 This can be setup either in [AWS EC2](https://aws.amazon.com/ec2/), or another Virtual Environment such as KVM running on a Linux Server.
-The environment (which provided 1x Guacamole Server, and 8x "The Complete XML Developer"  Virtual Machines) and that was used for teaching "The Complete XML Developer" in London in February 2024 was Ubuntu 24.04 running on a bare-metal server leased by Evolved Binary from [Hetzner](https://www.hetzner.com/) in Germany, with the following configuration:
+The environment (which provided 1x Guacamole Server, and 8x "The Complete XML Developer"  Virtual Machines) and that was used for teaching "The Complete XML Developer" in London in February 2024 was Ubuntu 26.04 running on a bare-metal server leased by Evolved Binary from [Hetzner](https://www.hetzner.com/) in Germany, with the following configuration:
 * Xeon E5-1650 v3 @ 3.50GHz (6 Cores / 12 Threads)
 * 128 GB RAM
 * 2x 480GB SSD in RAID 1
@@ -19,7 +19,7 @@ Below we detail two options for setting up Virtual Machines: 1. Hetzner bare-met
 
 ### 1. Setting up a new Linux KVM VM (optional)
 
-If you have leased a server from someone like Hetzner with Ubuntu 24.04 installed and wish to set this all up using KVM to host your VMs, then on the server (KVM host) you should run the following commands (assuming an Evolved Binary Server in Hetzner):
+If you have leased a server from someone like Hetzner with Ubuntu 26.04 installed and wish to set this all up using KVM to host your VMs, then on the server (KVM host) you should run the following commands (assuming an Evolved Binary Server in Hetzner):
 
 ```shell
 git clone --single-branch --branch hetzner https://github.com/adamretter/soyoustart hetzner
@@ -63,7 +63,7 @@ If you wish to set this up in AWS EC2, then for each Virtual Machine you need sh
 
 1. Name the instance 'xmldev-01'. (change the `01` as needed for more machines).
 
-2. Select the `Ubuntu Server 24.04 LTS (HVM), SSD Volume Type` AMI image, and the Architecture `arm64`.
+2. Select the `Ubuntu Server 26.04 LTS (HVM), SSD Volume Type` AMI image, and the Architecture `arm64`.
 
 3. Select `m6g.xlarge` instance type. (i.e.: 4vCPU, 16GB Memory, 1x237 NVMe SSD, $0.1776 / hour).
 
@@ -120,7 +120,7 @@ After installation Guacamole's Web Server should be accessible from: [http://loc
 
 ## Installing a Complete XML Developer Workstation
 
-You can install one or more Complete XML Developer workstations, each should be configured within its own virtual (or physical) machine. We expect to start from a clean Ubuntu Server, or Ubuntu Cloud Image install. This has been tested with Ubuntu version 24.04 LTS (arm64).
+You can install one or more Complete XML Developer workstations, each should be configured within its own virtual (or physical) machine. We expect to start from a clean Ubuntu Server, or Ubuntu Cloud Image install. This has been tested with Ubuntu version 26.04 LTS (arm64).
 
 ### Complete XML Developer Software Environment
 

@@ -1,5 +1,5 @@
 ###
-# Puppet Script for XML Calabash 3 on Ubuntu 24.04
+# Puppet Script for XML Calabash 3 on Ubuntu
 ###
 
 $calabash_version = '3.0.24'

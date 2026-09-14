@@ -1,5 +1,5 @@
 ###
-# Puppet Script for a Desktop Developer Environment using LXQT on Ubuntu 24.04
+# Puppet Script for a Desktop Developer Environment using LXQT on Ubuntu
 ###
 
 $desktop_background_image_url = 'https://static.evolvedbinary.com/eb-desktop-background.png'
@@ -26,6 +26,33 @@ package { 'desktop':
   ensure  => installed,
   name    => 'lubuntu-desktop',
   require => File_line['disable-screensaver'],
+}
+
+ini_setting { 'lxqt-theme':
+  ensure  => present,
+  path    => "/home/${default_user}/.config/lxqt/lxqt.conf",
+  section => 'General',
+  setting => 'theme',
+  value   => 'Clearlooks',
+  require => Package['desktop'],
+}
+
+ini_setting { 'lxqt-icon-theme':
+  ensure  => present,
+  path    => "/home/${default_user}/.config/lxqt/lxqt.conf",
+  section => 'General',
+  setting => 'icon_theme',
+  value   => 'Papirus',
+  require => Package['desktop'],
+}
+
+ini_setting { 'lxqt-qt-style':
+  ensure  => present,
+  path    => "/home/${default_user}/.config/lxqt/lxqt.conf",
+  section => 'Qt',
+  setting => 'style',
+  value   => 'Fusion',
+  require => Package['desktop'],
 }
 
 ini_setting { 'lxqt-session-userfile':

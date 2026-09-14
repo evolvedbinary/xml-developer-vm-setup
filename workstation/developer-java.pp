@@ -1,5 +1,5 @@
 ###
-# Puppet Script for a Java Developer Environment on Ubuntu 22.04
+# Puppet Script for a Java Developer Environment on Ubuntu
 ###
 
 include apt
@@ -11,12 +11,11 @@ $javafx_25_version = '25.0.1'
 # Install Adoptium Temurin JDK 17 as default (oXygen XML Editor only support Oracle or Temurin JDKs), and JDK 25 (needed for Elemental)
 apt::source { 'adoptium':
   location => 'https://packages.adoptium.net/artifactory/deb',
-  release  => 'noble',
+  release  => $ubuntu_codename,
   repos    => 'main',
   comment  => 'adoptium',
   key      => {
-    id     => '3B04D753C9050D9A5D343F39843C48A565F8F04B',
-    name   => 'adoptium.gpg.key',
+    name   => 'adoptium.asc',
     source => 'https://packages.adoptium.net/artifactory/api/gpg/key/public',
   },
   notify   => Exec['apt_update'],

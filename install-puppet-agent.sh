@@ -49,14 +49,8 @@ elif [ -n "$(command -v rpm)" ]; then
 
 # Debian compatible
 elif [ -n "$(command -v dpkg)" ]; then
-	DISTRO_CODENAME="$(lsb_release -sc)"
-	pushd /tmp
-	wget https://apt.puppetlabs.com/puppet$PUPPET_VER-release-$DISTRO_CODENAME.deb
-	dpkg -i puppet$PUPPET_VER-release-$DISTRO_CODENAME.deb
-	rm puppet$PUPPET_VER-release-$DISTRO_CODENAME.deb
-	popd
-	apt-get update
 	apt-get install -y puppet-agent
+	PUPPET_BIN=/usr/bin/puppet
 	PUPPET_INSTALLED=true
 fi
 
@@ -67,7 +61,7 @@ fi
 
 # non-platform specific puppet modules
 puppet_modules=(
-	puppetlabs-stdlib
+	"puppetlabs-stdlib --version 9.7.0"
 	saz-ssh
 	puppetlabs-sshkeys_core
 	puppetlabs-vcsrepo

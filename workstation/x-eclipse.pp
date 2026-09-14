@@ -1,5 +1,5 @@
 ###
-# Puppet Script for Eclipse IDE on Ubuntu 24.04
+# Puppet Script for Eclipse IDE on Ubuntu
 ###
 
 $eclipse_version = '2025-09'

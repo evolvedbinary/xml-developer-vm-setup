@@ -1,16 +1,16 @@
 ###
-# Puppet Script for PostgreSQL on Ubuntu 24.04
+# Puppet Script for PostgreSQL on Ubuntu
 ###
 
 include apt
 
 apt::source { 'postgresql':
   location => 'https://apt.postgresql.org/pub/repos/apt',
-  release  => 'noble-pgdg',
+  release  => "${ubuntu_codename}-pgdg",
   repos    => 'main',
   comment  => 'PostgreSQL',
   key      => {
-    id     => 'B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8',
+    name   => 'postgresql.asc',
     source => 'https://www.postgresql.org/media/keys/ACCC4CF8.asc',
   },
 }

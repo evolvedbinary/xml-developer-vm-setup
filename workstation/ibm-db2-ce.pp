@@ -1,5 +1,5 @@
 ###
-# Puppet Script for IBM Db2 Community Edition on Ubuntu 24.04
+# Puppet Script for IBM Db2 Community Edition on Ubuntu
 ###
 $ibm_db2_major_version = '12'
 $ibm_db2_minor_version = '1'
