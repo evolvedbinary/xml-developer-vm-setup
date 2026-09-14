@@ -147,7 +147,7 @@ The following software will be configured:
         * Protege 5.6.9
 	* Saxon HE 12.10
 	* Morgana XProc III EE 1.7
-	* XML Calabash 3.0.24
+	* XML Calabash 3.0.54
 	* XSpec 3.3.2
 
 * Database Environment
