@@ -144,6 +144,7 @@ The following software will be configured:
 	* Elemental 7.4.0-SNAPSHOT (build from source)
 	* oXygen XML Editor 21.1
 		* Oxygen XSpec Helper View
+        * Protege 5.6.9
 	* Saxon HE 12.9
 	* Morgana XProc III EE 1.7
 	* XML Calabash 3.0.24
