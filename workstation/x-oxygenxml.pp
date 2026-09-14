@@ -2,7 +2,7 @@
 # Puppet Script for oXygen XML Editor on Ubuntu
 ###
 
-$oxygen_version = '27.1'
+$oxygen_version = '28.1'
 $xspec_helper_view_version = '2.3.2'
 
 $oxygen_license_xml = @(OXYGEN_LICENSE_XML_EOF:xml/L)
@@ -13,24 +13,23 @@ $oxygen_license_xml = @(OXYGEN_LICENSE_XML_EOF:xml/L)
         <String>license.26</String>
         <String>------START-LICENSE-KEY------
 
-Registration_Name=training @ evolvedbinary . com
+Registration_Name=adam @ evolvedbinary . com
 
-Company=Evolved-Binary
+Company=
 
 Category=Enterprise
 
 Component=XML-Editor, XSLT-Debugger, Saxon-SA
 
-Version=27
+Version=28
 
 Number_of_Licenses=1
 
-Date=11-03-2025
+Date=09-13-2026
 
 Trial=30
 
-SGN=MC4CFQCRhQEaoIyHoyNpRAhbktxDxcrDZQIVAI9vENwyMu8l+eGcTn4BSNNQiRy/
-
+SGN=MCwCFAm54zr0q0orABY25czB4auHCvg4AhRtT2KOLD6Fr+N6znGtuS3eXSjG4Q\=\=
 
 -------END-LICENSE-KEY-------</String>
       </entry>

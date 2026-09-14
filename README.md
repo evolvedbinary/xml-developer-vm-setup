@@ -142,7 +142,7 @@ The following software will be configured:
 
 * XML Environment
 	* Elemental 7.4.0-SNAPSHOT (build from source)
-	* oXygen XML Editor 21.1
+	* oXygen XML Editor 28.1
 		* Oxygen XSpec Helper View
         * Protege 5.6.9
 	* Saxon HE 12.9
