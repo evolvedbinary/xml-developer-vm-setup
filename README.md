@@ -148,7 +148,7 @@ The following software will be configured:
 	* Saxon HE 12.10
 	* Morgana XProc III EE 1.7
 	* XML Calabash 3.0.54
-	* XSpec 3.3.2
+	* XSpec 4.0.3
 
 * Database Environment
 	* IBM DB2 Community Edition 12.1.2

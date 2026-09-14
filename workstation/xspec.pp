@@ -1,8 +1,8 @@
 ###
-# Puppet Script for XSpec 3 on Ubuntu
+# Puppet Script for XSpec 4 on Ubuntu
 ###
 
-$xspec_version = '3.3.2'
+$xspec_version = '4.0.3'
 $xspec_install_path = "/opt/xspec-${calabash_version}"
 $xspec_group = 'xspec'
 
