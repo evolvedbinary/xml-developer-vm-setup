@@ -6,7 +6,7 @@ include apt
 
 $maven_version = '3.9.16'
 $javafx_17_version = '17.0.20'
-$javafx_25_version = '25.0.1'
+$javafx_25_version = '25.0.4'
 
 # Install Adoptium Temurin JDK 17 as default (oXygen XML Editor only support Oracle or Temurin JDKs), and JDK 25 (needed for Elemental)
 apt::source { 'adoptium':
