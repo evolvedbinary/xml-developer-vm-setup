@@ -12,9 +12,17 @@ apt::source { 'docker':
   },
 }
 
+exec { 'apt-update-for-docker':
+  command => 'apt-get update',
+  path    => '/usr/bin',
+  user    => 'root',
+  group   => 'root',
+  require => Apt::Source['docker'],
+}
+
 package { 'containerd.io':
   ensure  => installed,
-  require => Apt::Source['docker'],
+  require => Exec['apt-update-for-docker'],
 }
 
 package { 'docker-ce':
