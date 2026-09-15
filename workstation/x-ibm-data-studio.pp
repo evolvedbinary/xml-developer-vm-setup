@@ -127,6 +127,7 @@ file { 'ibm-data-studio-response-file':
 
 exec { 'install-ibm-data-studio':
   command  => "${ibm_installation_manager_eclipse_path}/tools/imcl input ${$ibm_data_studio_response_file_path} -log ${ibm_data_studio_setup_path}/data-studio-install.log.xml -acceptLicense",
+  timeout  => 600,
   user     => 'root',
   group    => 'root',
   provider => shell,
