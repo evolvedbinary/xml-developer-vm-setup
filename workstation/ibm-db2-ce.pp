@@ -3,7 +3,7 @@
 ###
 $ibm_db2_major_version = '12'
 $ibm_db2_minor_version = '1'
-$ibm_db2_patch_version = '2'
+$ibm_db2_patch_version = '5'
 $ibm_db2_version = "${ibm_db2_major_version}.${ibm_db2_minor_version}.${ibm_db2_patch_version}"
 $ibm_db2_path = "/opt/ibm/db2/V${ibm_db2_major_version}.${ibm_db2_minor_version}"
 $ibm_db2_setup_response_file = '/tmp/db2server.rsp'
@@ -124,6 +124,14 @@ package { 'libaio-dev':
   ensure => installed,
 }
 
+package { 'libaio1t64':
+  ensure => installed,
+}
+
+package { 'libxml2-dev':
+  ensure => installed,
+}
+
 # NOTE(AR) IBM DB2 setup seems to require this file, but it is not present in the 'libaio-dev' package
 file { '/usr/lib/x86_64-linux-gnu/libaio.so.1':
   ensure  => link,
@@ -132,6 +140,16 @@ file { '/usr/lib/x86_64-linux-gnu/libaio.so.1':
   owner   => 'root',
   group   => 'root',
   require => Package['libaio-dev'],
+}
+
+# NOTE(AR) IBM DB2 setup seems to require this file, but it is not present in the 'libxml2-dev' package
+file { '/usr/lib/x86_64-linux-gnu/libxml2.so.2':
+  ensure  => link,
+  target  => '/usr/lib/x86_64-linux-gnu/libxml2.so.16',
+  replace => false,
+  owner   => 'root',
+  group   => 'root',
+  require => Package['libxml2-dev'],
 }
 
 exec { 'install-ibm-db2':
@@ -153,7 +171,9 @@ exec { 'install-ibm-db2':
     Package['libnuma1'],
     Package['binutils'],
     Package['libaio-dev'],
+    Package['libaio1t64'],
     File['/usr/lib/x86_64-linux-gnu/libaio.so.1'],
+    File['/usr/lib/x86_64-linux-gnu/libxml2.so.2'],
   ],
 }
 
@@ -180,7 +200,7 @@ exec { 'install-sample-db':
   require     => Service['db2fmcd'],
 }
 
-# DB2 JDBC driver - /opt/ibm/db2/V11.5/java/db2jcc4.jar
+# DB2 JDBC driver - /opt/ibm/db2/V12.1/java/db2jcc4.jar
 ## JDBC connection string - jdbc:db2://localhost:25000/<database>
 
 # Add DB2 Client Desktop link
