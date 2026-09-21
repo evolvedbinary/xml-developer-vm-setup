@@ -141,7 +141,7 @@ The following software will be configured:
 	* Eclipse IDE 2026-09
 
 * XML Environment
-	* Elemental 7.4.0-SNAPSHOT (build from source)
+	* Elemental 7.7.1-SNAPSHOT (build from source)
 	* oXygen XML Editor 28.1
 		* Oxygen XSpec Helper View
         * Protege 5.6.9
@@ -185,7 +185,7 @@ cd workstation
 sudo /opt/puppetlabs/bin/puppet apply 00-locale.pp
 
 sudo FACTER_default_user_password=mypassword \
-     /opt/puppetlabs/bin/puppet apply --modulepath=/etc/puppetlabs/code/environments/production/modules:$(pwd)/modules \
+     /opt/puppetlabs/bin/puppet apply --modulepath=/etc/puppet/code/modules:$(pwd)/modules \
 	 01-base.pp
 ```
 
@@ -205,9 +205,9 @@ After the system restarts and you have logged in, you need to resume from the `x
 cd xml-developer-vm-setup/workstation
 sudo FACTER_default_user_password=mypassword \
      FACTER_elemental_db_admin_password=xmldev \
-     FACTER_elemental_version=7.4.0-SNAPSHOT \
+     FACTER_elemental_version=7.7.1-SNAPSHOT \
      FACTER_postgresql_db_postgres_password=postgres \
-     /opt/puppetlabs/bin/puppet apply --modulepath=/etc/puppetlabs/code/environments/production/modules:$(pwd)/modules \
+     /opt/puppetlabs/bin/puppet apply --modulepath=/etc/puppet/code/modules:$(pwd)/modules \
   .
 ```
 
