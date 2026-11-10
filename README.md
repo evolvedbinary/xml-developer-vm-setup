@@ -89,7 +89,7 @@ sudo ./install-puppet-agent.sh
 cd guacamole
 
 sudo FACTER_default_user_password=mypassword2 \
-     /opt/puppetlabs/bin/puppet apply 01-base.pp
+     puppet apply 01-base.pp
 ```
 
 **NOTE:** you should set your own passwords appropriately above! The `default_user_password` is used for the Linux user that can access the machine, the username is `ubuntu`.
@@ -107,7 +107,7 @@ cd xml-developer-vm-setup/guacamole
 
 sudo FACTER_default_user_password=mypassword2 \
      FACTER_xmldev_default_user_password=mypassword \
-     /opt/puppetlabs/bin/puppet apply .
+     puppet apply .
 ```
 
 **NOTE:** you should set your own passwords appropriately above!
@@ -182,10 +182,10 @@ sudo ./install-puppet-agent.sh
 
 cd workstation
 
-sudo /opt/puppetlabs/bin/puppet apply 00-locale.pp
+sudo puppet apply 00-locale.pp
 
 sudo FACTER_default_user_password=mypassword \
-     /opt/puppetlabs/bin/puppet apply --modulepath=/etc/puppet/code/modules:$(pwd)/modules \
+     puppet apply --modulepath=/etc/puppet/code/modules:$(pwd)/modules \
 	 01-base.pp
 ```
 
@@ -207,7 +207,7 @@ sudo FACTER_default_user_password=mypassword \
      FACTER_elemental_db_admin_password=xmldev \
      FACTER_elemental_version=7.7.1-SNAPSHOT \
      FACTER_postgresql_db_postgres_password=postgres \
-     /opt/puppetlabs/bin/puppet apply --modulepath=/etc/puppet/code/modules:$(pwd)/modules \
+     puppet apply --modulepath=/etc/puppet/code/modules:$(pwd)/modules \
   .
 ```
 
