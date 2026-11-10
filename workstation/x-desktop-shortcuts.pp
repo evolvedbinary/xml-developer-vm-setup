@@ -76,8 +76,8 @@ exec { 'download-eb-favicon-logo':
   ],
 }
 
-xdesktop::shortcut { 'XQuery and XML Web Applications - Slides':
-  application_path => '/usr/bin/google-chrome-stable https://static.evolvedbinary.com/xmlss25/',
+xdesktop::shortcut { 'Building XML Web Applications with XML Databases - Slides':
+  application_path => '/usr/bin/google-chrome-stable https://static.evolvedbinary.com/da2026/',
   application_icon => "/home/${default_user}/.local/share/icons/eb-favicon-logo.svg",
   startup_notify   => true,
   user             => $default_user,
