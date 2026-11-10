@@ -13,9 +13,9 @@ $oxygen_license_xml = @(OXYGEN_LICENSE_XML_EOF:xml/L)
         <String>license.26</String>
         <String>------START-LICENSE-KEY------
 
-Registration_Name=adam @ evolvedbinary . com
+Registration_Name=Declarative Amsterdam Workshop
 
-Company=
+Company=Declarative Amsterdam Workshop
 
 Category=Enterprise
 
@@ -23,13 +23,13 @@ Component=XML-Editor, XSLT-Debugger, Saxon-SA
 
 Version=28
 
-Number_of_Licenses=1
+Number_of_Licenses=30
 
-Date=09-13-2026
+Date=11-09-2026
 
-Trial=30
+Trial=15
 
-SGN=MCwCFAm54zr0q0orABY25czB4auHCvg4AhRtT2KOLD6Fr+N6znGtuS3eXSjG4Q\=\=
+SGN=MCwCFG3NhDz+Ar5nx59WUbD62tbYJPPSAhQ93JjzRnHCB67J5NKWRSflFA4ldw\=\=
 
 -------END-LICENSE-KEY-------</String>
       </entry>
