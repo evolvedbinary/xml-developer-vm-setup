@@ -19,14 +19,14 @@ package { 'code':
 
 file_line { 'vscode-no-open-folder':
   ensure  => present,
-  path    => '/usr/share/applications/code.desktop',
+  path    => '/usr/share/applications/com.microsoft.VSCode.desktop',
   line    => 'MimeType=text/plain;application/x-code-workspace;',
   match   => '^MimeType\=',
   require => Package['code'],
 }
 
 xdesktop::shortcut { 'Code':
-  shortcut_source => '/usr/share/applications/code.desktop',
+  shortcut_source => '/usr/share/applications/com.microsoft.VSCode.desktop',
   user            => $default_user,
   position        => {
     provider => 'lxqt',
